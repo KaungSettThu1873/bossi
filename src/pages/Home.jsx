@@ -42,7 +42,7 @@ const HomePage = () => {
       <AdsBanner ads_banner={ads_banner} />
       <div className="d-flex align-items-center bg-none bg-sm-black">
         <Marquee />
-        <LanguageDropdown />
+  
       </div>
       <Carousel />
       <div className="px-lg-3">

@@ -60,7 +60,7 @@ const WithDraw = () => {
             <div className="profileTitle col-5 mt-2">{content?.wallet?.account_name} : </div>
             <div className="col-7">
               <input type="text"
-                className="form-control bg-transparent text-white"
+                className="form-control bg-transparent text-white placeholder-white"
                 placeholder={content?.wallet?.enter_account_name}
                 value={account_name}
                 onChange={(e) => setAccountName(e.target.value)}
@@ -72,7 +72,7 @@ const WithDraw = () => {
             <div className="profileTitle col-5 mt-2">{content?.wallet?.account}: </div>
             <div className="col-7">
               <input type="text"
-                className="form-control bg-transparent text-white"
+                className="form-control bg-transparent text-white placeholder-white"
                 placeholder={content?.wallet?.enter_account}
                 value={account_number}
                 onChange={(e) => setAccountNumber(e.target.value)}
@@ -84,7 +84,7 @@ const WithDraw = () => {
             <div className="profileTitle col-5 mt-2">{content?.wallet?.amount} : </div>
             <div className="col-7">
               <input type="number"
-                className="form-control bg-transparent text-white"
+                className="form-control bg-transparent text-white placeholder-white"
                 placeholder={content?.wallet?.enter_amount}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -96,7 +96,7 @@ const WithDraw = () => {
             <div className="profileTitle col-5 mt-2">{content?.auth?.password} : </div>
             <div className="col-7">
               <input type="password"
-                className="form-control bg-transparent text-white"
+                className="form-control bg-transparent text-white placeholder-white"
                 placeholder={content?.auth?.enter_password}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

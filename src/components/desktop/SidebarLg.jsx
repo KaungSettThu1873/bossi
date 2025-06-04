@@ -94,6 +94,7 @@ const SidebarLg = () => {
               </div>
             </div>
           </Link>
+          
           <div className="moneyGroup gap-2 rounded-5 py-0 ps-3 pe-4">
             <img src={coin} className='coin' />
             <h5 className='pt-2'>{Number(user?.balance).toLocaleString()} Ks</h5>

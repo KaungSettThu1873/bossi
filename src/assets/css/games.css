@@ -32,7 +32,8 @@
     object-position: center;
 }
 .activeGameList{
-  background: linear-gradient(180deg, #6500fd 10%, #1E0446) !important;
+  background: #FFCA2C !important;
+  color: black;
 }
 .gameCard{
     background: linear-gradient(165deg, #5f0068 25%, #164353);

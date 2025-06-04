@@ -6,7 +6,7 @@ body{
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background: #000336;
+  background: #212121;
   color: white;
   overflow-x: hidden !important;
 }
@@ -43,8 +43,8 @@ body{
 
  
 .flag{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 .app-gradient{
   background: linear-gradient(110deg, #3a0073 20%, #2000a1 70%);
@@ -131,6 +131,18 @@ object-position: center;
 
 .provider_list::-webkit-scrollbar-track {
   background: transparent; /* background of the scrollbar track */
+}
+
+.nav-design {
+  background-color: black ;
+  margin-top: 10px;
+  padding: 13px;
+  border-radius: 100px;
+
+}
+
+.placeholder-white::placeholder {
+  color: white;
 }
 
 @media screen and (max-width:1000px){

@@ -13,7 +13,7 @@ const LanguageDropdown = () => {
         <img src={lan == "mm" ? mm : en} className='flag' />
       </Dropdown.Toggle>
 
-      <Dropdown.Menu className='langDropdown mt-5'>
+      <Dropdown.Menu className='langDropdown mt-5  bg-dark'>
         <Dropdown.Item  
         onClick={() => updateLanguage('mm')}
         >

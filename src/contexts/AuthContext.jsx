@@ -22,7 +22,7 @@ const AuthContextProvider = ({ children }) => {
             setProfile(userData);
         } else {
             setProfile(null);
-            navigate("/login");
+            navigate("/?type=all");
         }
     }, [token, userData, navigate]);
 

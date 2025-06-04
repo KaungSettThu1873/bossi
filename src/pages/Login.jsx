@@ -1,16 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import '../assets/css/auth.css'
+import { Modal, Spinner } from 'react-bootstrap'
 import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import useLogin from "../hooks/useLogin"
 import BASE_URL from '../hooks/baseUrl'
-import { Spinner } from 'react-bootstrap'
 import { LanguageContext } from "../contexts/LanguageContext"
-import FooterMarquee from '../components/mobile/FooterMarquee'
 import logo from "../assets/img/logo.png"
 
-
-const LoginPage = () => {
+const Login = ({ show, handleClose }) => {
   const { content, lan } = useContext(LanguageContext);
   const [pwType, setPwType] = useState('password');
   const togglePwType = () => {
@@ -20,6 +16,7 @@ const LoginPage = () => {
   const [user_name, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, loading, errMsg } = useLogin();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     let url = BASE_URL + "/login";
@@ -27,61 +24,83 @@ const LoginPage = () => {
     await login(url, inputData);
   }
 
-
   return (
-    <>
-
-      <div className='row justify-content-center align-items-center mt-5'>
-        <div className="col-lg-3 col-md-5 col-sm-6 col-9">
-          <div>
-            <img src={logo} width={300} alt="" />
-            <h1 className={`fw-semibold text-warning2 text-center mb-4`}>{content?.auth?.login.toUpperCase()}</h1>
-          </div>
-          <form onSubmit={handleLogin}>
-            <div className="my-3">
-              <input
-                type="text"
-                placeholder={content?.profile?.username}
-                className={`w-full py-2 rounded-5 px-4`}
-                onChange={(e) => setUsername(e.target.value)}
-                value={user_name}
-              />
-              {error ? (error.user_name && <p className='ms-2 text-danger'>{error.user_name}</p>) : errMsg && <p className='text-danger'>{errMsg}</p>}
-            </div>
-            <div className="my-3">
-              <div className="d-flex bg-white rounded-5 w-full">
-                <input
-                  type={pwType}
-                  placeholder={content?.auth?.password}
-                  className={`rounded-start-5 w-full px-4 py-2 border border-0 focus-ring-none`}
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                />
-                <div onClick={togglePwType} className='rounded-end-5 bg-secondary d-flex align-items-center justify-content-center px-3'>
-                  {pwType === 'text' ?
-                    <EyeIcon className='text-white ' /> :
-                    <EyeOffIcon className='text-white ' />
-                  }
-                </div>
-              </div>
-              {error && error.password && <p className='ms-2 text-danger'>{error.password}</p>}
-            </div>
-            <button
-              type='submit'
-              className={`mb-3 py-1 rounded-4 bg-red button-bottom text-white w-100 ${lan === "mm" ? "mm-font" : ""}`}>
-              {loading && <Spinner className='me-1' size="sm" />}
-              {content?.auth?.login.toUpperCase()}
-            </button>
-            <Link to={'/register'}
-              className={`mb-3 py-1 rounded-4 bg-black2 button-bottom w-100 d-block text-center ${lan === "mm" ? "mm-font" : ""}`}>
-              {content?.auth?.new_member.toUpperCase()}
-            </Link>
-          </form>
+   <Modal show={show} onHide={handleClose} centered className="custom-auth-modal">
+      <Modal.Body className="p-4" style={{
+        backgroundColor: '#212121',
+        borderRadius: '20px',
+        padding: '30px',
+        width: '100%',
+        maxWidth: '400px',
+        color: 'white',
+        // boxShadow: '0 0 20px rgba(255, 215, 0, 0.3)'
+      }}>
+             <div className='text-end mb-2'>
+          <button onClick={handleClose} style={{
+            background: 'transparent',
+            border: 'none',
+            fontSize: '1.2rem',
+            color: '#bbb'
+          }}>&times;</button>
         </div>
-      </div>
-      <FooterMarquee />
-    </>
+        <div className="text-center mb-3">
+          <img src={logo} width={220} alt="logo" />
+          <h4 style={{ color: '#FFD700', fontWeight: 'bold' }}>{content?.auth?.login.toUpperCase()}</h4>
+        </div>
+
+        <form onSubmit={handleLogin}>
+        <div style={{ display: 'flex', marginBottom: '10px', borderRadius: '10px', overflow: 'hidden' }}>
+    <input
+      type="text"
+      placeholder={content?.profile?.username}
+      value={user_name}
+      onChange={(e) => setUsername(e.target.value)}
+      style={{ flex: 1, padding: '10px', border: 'none' }}
+    />
+  </div>
+  {error?.user_name && <span className="text-danger ms-1">*{error.user_name}</span>}
+  {!error?.user_name && errMsg && <span className="text-danger ms-1">*{errMsg}</span>}
+
+  {/* Password Box */}
+  <div style={{ display: 'flex', marginBottom: '10px', borderRadius: '10px', overflow: 'hidden' }}>
+    <input
+      type={pwType}
+      placeholder={content?.auth?.password}
+      value={password}
+      onChange={e => setPassword(e.target.value)}
+      style={{ flex: 1, padding: '10px', border: 'none' }}
+    />
+    <div
+      onClick={() => setPwType(pwType === 'text' ? 'password' : 'text')}
+      style={{ background: '#333', padding: '10px', cursor: 'pointer' }}
+    >
+      {pwType === 'text' ? <EyeIcon color="white" size={20} /> : <EyeOffIcon color="white" size={20} />}
+    </div>
+  </div>
+  {error?.password && <span className='text-danger ms-1'>*{error.password}</span>}
+
+
+          <button type="submit" className={`${lan === "mm" ? "mm-font" : ""}`}  style={{
+                        width: '100%',
+                        padding: '10px',
+                        backgroundColor: '#FF0000',
+                        color: 'white',
+                        borderRadius: '10px',
+                        fontWeight: 'bold',
+                        marginBottom: '10px'
+                      }}>
+            {loading && <Spinner className="me-1" size="sm" />}
+            {content?.auth?.login.toUpperCase()}
+          </button>
+
+          {/* <button type="button" onClick={handleClose} className="btn w-100 bg-black2 text-white py-2 rounded-4">
+            {lan === 'mm' ? 'ပိတ်မည်' : 'Close'}
+          </button> */}
+        </form>
+      </Modal.Body>
+    </Modal>
+    
   )
 }
 
-export default LoginPage
+export default Login;

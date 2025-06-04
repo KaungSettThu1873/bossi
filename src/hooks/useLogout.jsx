@@ -21,7 +21,7 @@ const useLogout = () => {
             });
             if (response.ok) {
                 setLoading(false);
-                navigate('/login');
+                navigate('/?type=all');
                 localStorage.removeItem('token');
                 message.success('Logout successfully.');
             } else {

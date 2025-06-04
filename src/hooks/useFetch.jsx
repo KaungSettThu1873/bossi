@@ -24,7 +24,7 @@ const useFetch = (url) => {
             .then(res => {
                 if(res.status === 401){
                     localStorage.removeItem('token');
-                    navigate('/login');
+                    navigate('/?type=all');
                 }
                 if (!res.ok) {
                     throw Error("Something Went Wrong!");
@@ -38,7 +38,7 @@ const useFetch = (url) => {
             .catch(e => {
                 setError(e.message);
                 setLoading(false);
-                // navigate('/login');
+            //   navigate('/');
             });
 
         // Cleanup function

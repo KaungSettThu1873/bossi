@@ -22,7 +22,7 @@ const useLogin = () => {
                 // } else {
                 //     navigate('/');
                 // }
-                navigate('/');
+                navigate('/?type=all');
                 message.success('Logged In Successfully.');
                 return res.data.data.user;
             }

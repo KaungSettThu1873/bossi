@@ -25,7 +25,7 @@ const launchGame = (type_id, provider_id, game_id) => async (e) => {
 
     if (!response.ok) {
       if(response.status === 401) {
-        window.location.href = "/login";
+        window.location.href = "/";
       }
       throw new Error("Launch Game failed");
     }

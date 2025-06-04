@@ -89,7 +89,7 @@ const Deposit = () => {
           <div className="profileTitle col-5 mt-2">{content?.wallet?.amount} : </div>
           <div className="col-7">
             <input type="text"
-              className="form-control bg-transparent text-white"
+              className="form-control bg-transparent text-white placeholder-white" 
               placeholder={content?.wallet?.enter_amount}
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
@@ -100,12 +100,13 @@ const Deposit = () => {
         <div className="row mb-2">
           <div className="profileTitle col-5 mt-2">{content?.wallet?.receipt}</div>
           <div className="col-7">
-            <input type="text"
-              className="form-control bg-transparent text-white"
-              placeholder={content?.wallet?.enter_last_6_digits}
-              onChange={(e) => setRefrence_no(e.target.value)}
-              value={refrence_no}
-            />
+    <input
+  type="text"
+  className="form-control bg-transparent text-white placeholder-white"
+  placeholder={content?.wallet?.enter_last_6_digits}
+  onChange={(e) => setRefrence_no(e.target.value)}
+  value={refrence_no}
+/>
             {error && error.refrence_no && <span className='text-danger'>*{error.refrence_no}</span>}
           </div>
         </div>

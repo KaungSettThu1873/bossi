@@ -27,14 +27,14 @@ const GameTabsLg = () => {
       <div className="d-flex mt-4 align-items-center gap-2 text-center overflow-x-auto">
         {/* types */}
         <Link to={'/?type=all'} className="cursor-pointer w-100">
-          <div className={`w-100 py-2 rounded-3 ${type == "all" ? "activeGameList" : 'bg-light'}`}>
-            <img src={all} className='rounded-3 ' width={50} height={50} />
+          <div className={`w-75 py-2 rounded-3 ${type == "all" ? "activeGameList" : 'bg-light'}`}>
+            <img src={all} className='rounded-3 ' width={40} height={40}/>
             <div className='rounded-bottom-3' >All Games</div>
           </div>
         </Link>
         <Link to={'/?type=hot'} className="cursor-pointer w-100">
-          <div className={`w-100 py-2 rounded-3 ${type == "hot" ? "activeGameList" : 'bg-light'}`}>
-            <img src={all} className='rounded-3 ' width={50} height={50} />
+          <div className={`w-75 py-2 rounded-3 ${type == "hot" ? "activeGameList" : 'bg-light'}`}>
+            <img src={all} className='rounded-3 ' width={40} height={40}/>
             <div className='rounded-bottom-3' >Hot Games</div>
           </div>
         </Link>
@@ -42,27 +42,27 @@ const GameTabsLg = () => {
           return <div onClick={() => {
             navigate(`?type=${item.id}`)
           }} key={index} className="cursor-pointer w-100">
-            <div className={`w-100 py-2 rounded-3 ${type == item.id ? "activeGameList" : 'bg-light'}`}>
-              <img src={item.img} className='rounded-3 ' width={50} height={50} />
+            <div className={`w-75 py-2 rounded-3 ${type == item.id ? "activeGameList" : 'bg-light'}`}>
+              <img src={item.img} className='rounded-3 ' width={40} height={40}/>
               <div className='rounded-bottom-3' >{item.name}</div>
             </div>
           </div>
         })}
         <Link to={'/?type=table'} className="cursor-pointer w-100">
-          <div className={`w-100 py-2 rounded-3 ${type == "table" ? "activeGameList" : 'bg-light'}`}>
-            <img src={slot} className='rounded-3 ' width={50} height={50} />
+          <div className={`w-75 py-2 rounded-3 ${type == "table" ? "activeGameList" : 'bg-light'}`}>
+            <img src={slot} className='rounded-3 ' width={40} height={40} />
             <div className='rounded-bottom-3' >Tables</div>
           </div>
         </Link>
         <Link to={'/?type=card'} className="cursor-pointer w-100">
-          <div className={`w-100 py-2 rounded-3 ${type == "card" ? "activeGameList" : 'bg-light'}`}>
-            <img src={casino} className='rounded-3 ' width={50} height={50} />
+          <div className={`w-75 py-2 rounded-3 ${type == "card" ? "activeGameList" : 'bg-light'}`}>
+            <img src={casino} className='rounded-3 ' width={40} height={40} />
             <div className='rounded-bottom-3' >Cards</div>
           </div>
         </Link>
         <Link to={'/?type=bingo'} className="cursor-pointer w-100">
-          <div className={`w-100 py-2 rounded-3 ${type == "bingo" ? "activeGameList" : 'bg-light'}`}>
-            <img src={slot} className='rounded-3 ' width={50} height={50} />
+          <div className={`w-75 py-2 rounded-3 ${type == "bingo" ? "activeGameList" : 'bg-light'}`}>
+            <img src={slot} className='rounded-3 ' width={40} height={40} />
             <div className='rounded-bottom-3' >Bingos</div>
           </div>
         </Link>
@@ -102,10 +102,10 @@ const GameTabsLg = () => {
               <h5 className='mb-3'>{content?.game_type?.burmese}</h5>
               <div className="d-flex align-items-center gap-3">
                 <Link to={`https://goldendragon7.pro/?user_name=${user?.user_name}&balance=${user?.balance}`} target='_blank'>
-                  <img src={shan} width={150} alt="" />
+                  <img src={shan} width={100} alt="" />
                 </Link>
                 <Link to={`https://ponewine20x.netlify.app/?user_name=${user?.user_name}&balance=${user?.balance}`} target='_blank'>
-                  <img className='rounded-4' src={ponewine} width={150} alt="" />
+                  <img className='rounded-4' src={ponewine} width={100} alt="" />
                 </Link>
               </div>
             </div>
