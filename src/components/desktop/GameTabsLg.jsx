@@ -12,6 +12,8 @@ import shan from "../../assets/img/shan.jpg";
 import ponewine from "../../assets/img/ponewine.jpg";
 
 
+
+
 const GameTabsLg = () => {
   const { content } = useContext(LanguageContext);
   const { user } = useContext(AuthContext);
@@ -21,6 +23,45 @@ const GameTabsLg = () => {
   const provider = searchParams.get('provider');
   const { types: gameTabs, providersData: providers, game_lists: games, loading, hot_games, table_games, card_games, bingo_games } = useContext(GameContext);
   // const gameProvider = providers && providers.find((p) => p?.code == provider)?.id;
+
+  // const providerUrl = https://luckymillion.pro/api/providers/
+
+  const baseImageMap = {
+  1: "/images/Final_All/Slot/SlotPng.png",
+  2: "/images/Final_All/Casino/LiveCasinoPNG.png",
+  3: "/images/Final_All/Sport Book/SportPNG.png",
+  4: "/images/Final_All/Virtual Sport/VirtualSportPNG.png",
+  5: "/images/Final_All/Lottery/LotteryPNG.png",
+  // 6: "//assets/img/my_local_images/qipai.png",
+  7: "/images/Final_All/P2P/P2PPNG.png",
+  8: "/images/Final_All/Fishing/FishingPng.png",
+  9: "/images/Final_All/Cock Fighting/CockFishingPNG_00000.png",
+  10: "/images/Final_All/Bonus/BonusPNG.png",
+  11: "/images/Final_All/E-Sport/E- SportPNG.png",
+  // 12: "//assets/img/my_local_images/poker.png",
+  // 13: "//assets/img/my_local_images/others.png",
+  // 14: "//assets/img/my_local_images/premium.png",
+  }
+
+  const activeImageMap = {
+    1: "/images/Final_All/Slot/SlotSample.avi",
+    2: "/images/Final_All/Casino/LiveCasinoSample.avi",
+    3: "/images/Final_All/SportBook/SportBookSample.avi",
+    4: "/images/Final_All/VirtualSport/VirtualSportSample.avi",
+    5: "/images/Final_All/Lottery/LotterySample.avi",
+    // 6: "/./assets/my_local_images/qipai.png",
+    7: "/images/Final_All/P2P/P2PSample.avi",
+    8: "/images/Final_All/Fishing/fishingSample.avi",
+    9: "/images/Final_All/CockFighting/CockFishingSAMPLE.avi",
+    10: "/images/Final_All/Bonus/BonusSample.avi",
+    11: "/images/Final_All/E-Sport/E-SportSample.avi",
+    // 12: "/assets/my_local_images/poker.png",
+    // 13: "/assets/my_local_images/others.png",
+    // 14: "/assets/my_local_images/premium.png",
+    
+
+  }
+
 
   return (
     <div className='px-4 d-none d-lg-block '>
@@ -33,22 +74,37 @@ const GameTabsLg = () => {
           </div>
         </Link>
         <Link to={'/?type=hot'} className="cursor-pointer w-100">
-          <div className={`w-75 py-2 rounded-3 ${type == "hot" ? "activeGameList" : 'bg-light'}`}>
+          <div className={`w-100 py-2 rounded-3 ${type == "hot" ? "activeGameList" : 'bg-light'}`}>
             <img src={all} className='rounded-3 ' width={40} height={40}/>
             <div className='rounded-bottom-3' >Hot Games</div>
           </div>
         </Link>
-        {gameTabs && gameTabs.map((item, index) => {
-          return <div onClick={() => {
-            navigate(`?type=${item.id}`)
-          }} key={index} className="cursor-pointer w-100">
-            <div className={`w-75 py-2 rounded-3 ${type == item.id ? "activeGameList" : 'bg-light'}`}>
-              <img src={item.img} className='rounded-3 ' width={40} height={40}/>
-              <div className='rounded-bottom-3' >{item.name}</div>
-            </div>
-          </div>
+        
+        {gameTabs && gameTabs
+           .filter(item => ![6,12,13,14].includes(item.id))
+           .map((item, index) => {
+   const isActive = type == item.id;
+const imgSrc = isActive ? activeImageMap[item.id] : baseImageMap[item.id];
+          return <>
+
+ {/* <img src={"public/images/Final_All/Fishing/FishingPng.png"} className='rounded-3' width={40} height={40} /> */}
+
+          <div onClick={() => navigate(`?type=${item.id}`)} key={index} className="cursor-pointer w-100">
+    <div className={`w-100 py-2 rounded-3 ${isActive ? "activeGameList" : 'bg-light'}`}>
+      {isActive ? (
+        <video width={40} height={40} autoPlay muted loop>
+          <source src={imgSrc} type="video/avi" />
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        <img src={imgSrc} className='rounded-3' width={40} height={40} />
+      )}
+      <div className='rounded-bottom-3'>{item.name}</div>
+    </div>
+  </div>
+          </>
         })}
-        <Link to={'/?type=table'} className="cursor-pointer w-100">
+        {/* <Link to={'/?type=table'} className="cursor-pointer w-100">
           <div className={`w-75 py-2 rounded-3 ${type == "table" ? "activeGameList" : 'bg-light'}`}>
             <img src={slot} className='rounded-3 ' width={40} height={40} />
             <div className='rounded-bottom-3' >Tables</div>
@@ -65,7 +121,7 @@ const GameTabsLg = () => {
             <img src={slot} className='rounded-3 ' width={40} height={40} />
             <div className='rounded-bottom-3' >Bingos</div>
           </div>
-        </Link>
+        </Link> */}
       </div>
       <div className="row mt-4">
         {/* gamelists */}
@@ -78,7 +134,7 @@ const GameTabsLg = () => {
             <GameList loading={loading} games={hot_games} />
           </>
         )}
-        {type == "table" && (
+        {/* {type == "table" && (
           <>
             <h5 className='mb-3'>Table Games</h5>
             <GameList loading={loading} games={table_games} />
@@ -95,7 +151,7 @@ const GameTabsLg = () => {
             <h5 className='mb-3'>Bingo Games</h5>
             <GameList loading={loading} games={bingo_games} />
           </>
-        )}
+        )} */}
         {(type == "all" && !provider) && (
           <>
             <div className='mb-4'>
@@ -113,7 +169,7 @@ const GameTabsLg = () => {
             {gameTabs && gameTabs.map((tab, index) => (
               <div className='w-100' key={index}>
                 <h5 className='mb-3'>{tab.name}</h5>
-                <ProviderList providers={tab.providers} type={tab} />
+                <ProviderList typeCode={tab?.code}  type={tab} />
               </div>
             ))}
             </div>
@@ -124,10 +180,11 @@ const GameTabsLg = () => {
           type == tab.id && (
             <div className='w-100' key={index}>
               <h5 className='mb-3'>{tab.name}</h5>
-              <ProviderList providers={tab.providers} type={tab} />
+              <ProviderList typeCode={tab?.code}  type={tab} />
             </div>
           )
         ))}
+
       </div>
     </div>
   )

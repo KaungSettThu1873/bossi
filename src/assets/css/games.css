@@ -32,7 +32,7 @@
     object-position: center;
 }
 .activeGameList{
-  background: #FFCA2C !important;
+  /* background: #FFCA2C !important; */
   color: black;
 }
 .gameCard{

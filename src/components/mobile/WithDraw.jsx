@@ -10,7 +10,7 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 const WithDraw = () => {
   const { user } = useContext(AuthContext);
   const { content } = useContext(LanguageContext);
-  const { data: banks } = useFetch(BASE_URL + "/agentPaymentType");
+  const { data: banks } = useFetch(BASE_URL + "/banks");
   const [payment, setPayment] = useState('');
   const [account_name, setAccountName] = useState('');
   const [account_number, setAccountNumber] = useState('');
@@ -20,7 +20,7 @@ const WithDraw = () => {
   const { inputSubmit, error, loading, errMsg } = useFormSubmit();
   const withdraw = async (e) => {
     e.preventDefault();
-    let url = BASE_URL + "/withdraw";
+    let url = BASE_URL + "/withdrawfinicial";
     let inputData = { payment_type_id: payment, account_name, account_number, amount, password };
     let method = "POST";
     let redirect = "/information?tab=logs&type=withdraw";
@@ -47,10 +47,10 @@ const WithDraw = () => {
               {content?.wallet?.choose_bank} :
             </div>
             <div className="col-7">
-              <select className="form-control form-select bg-transparent text-white" onChange={e => setPayment(e.target.value)} value={payment}>
+              <select className="form-control form-select bg-dark text-white" onChange={e => setPayment(e.target.value)} value={payment}>
                 <option value="">{content?.wallet?.choose_bank}</option>
                 {banks && banks.map((item, index) => (
-                  <option key={index} value={item.payment_type_id}>{item.payment_type}</option>
+                  <option key={index} value={item.id}>{item.bank_name}</option>
                 ))}
               </select>
               {error && error.payment_type_id && <small className="text-danger">*{"ငွေပေးချေမှုနည်းလမ်း ရွေးချယ်ပါ။"}</small>}

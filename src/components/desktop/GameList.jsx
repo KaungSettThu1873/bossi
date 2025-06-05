@@ -8,6 +8,8 @@ import { GameContext } from '../../contexts/GameContext';
 export default function GameList({ loading, games }) {
     const { content } = useContext(LanguageContext);
     const { provider_name } = useContext(GameContext);
+
+    console.log('aa', provider_name);
     
     return (
         <>

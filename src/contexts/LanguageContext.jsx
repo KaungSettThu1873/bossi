@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState, useMemo } from "react";
 import en_data from "../lang/en";
 import mm_data from "../lang/mm";
+import zh_data from "../lang/zh";
+import th_data from "../lang/th";
+
 
 const LanguageContext = createContext({
     updateLanguage: () => { },
@@ -29,11 +32,13 @@ const LanguageContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        if (language === "mm") {
-            setContent(mm_data);
-        }else {
-            setContent(en_data);
-        }
+     const langMap = {
+            en: en_data,
+            mm: mm_data,
+            zh: zh_data,
+            th: th_data,
+        };
+        setContent(langMap[language] || en_data);
     }, [language]);
 
     const value = useMemo(

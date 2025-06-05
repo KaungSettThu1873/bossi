@@ -286,7 +286,7 @@ function NavBar() {
                 gap: "1rem",
               }}
             >
-              {contacts &&
+              {/* {contacts &&
                 contacts.map((contact, index) => (
                   <Link to={contact.link} key={index}>
                     <img
@@ -300,7 +300,7 @@ function NavBar() {
                       }}
                     />
                   </Link>
-                ))}
+                ))} */}
             </div>
           </Offcanvas.Body>
         </div>

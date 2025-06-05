@@ -6,7 +6,7 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 
 export default function DepositLog() {
   const { content } = useContext(LanguageContext);
-  const { data: logs, loading } = useFetch(BASE_URL + "/depositlog");
+  const { data: logs, loading } = useFetch(BASE_URL + "/depositlogfinicial");
 
   return (
     <>

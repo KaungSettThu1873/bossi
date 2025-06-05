@@ -44,7 +44,7 @@ const HomePage = () => {
         <Marquee />
   
       </div>
-      <Carousel />
+      <Carousel  />
       <div className="px-lg-3">
         <div className="beforeLoginHome my-5 pb-3">
           <Link to={'/information?tab=transfer'}>

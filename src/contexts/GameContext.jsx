@@ -51,7 +51,7 @@ const GameContextProvider = ({ children }) => {
 
     const updateType = (newType) => setType(newType);
     const updateProvider = (newProvider) => setProvider(newProvider);
-    // console.log(gameProvider, type);
+    console.log('11',providersData);
 
     const value = useMemo(
         () => ({

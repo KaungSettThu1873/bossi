@@ -12,7 +12,7 @@ const Deposit = () => {
   const [show, setShow] = useState(false);
   const [amount, setAmount] = useState('');
   const [refrence_no, setRefrence_no] = useState('');
-  const { data: banks } = useFetch(BASE_URL + "/agentPaymentType");
+  const { data: banks } = useFetch(BASE_URL + "/banks");
   const [selectedBank, setSelectedBank] = useState(null);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ const Deposit = () => {
 
   const handleCopyText = (e) => {
     e.preventDefault();
-    if (selectedBank?.account_number) {
-      navigator.clipboard.writeText(selectedBank.account_number);
+    if (selectedBank?.no) {
+      navigator.clipboard.writeText(selectedBank.no);
       message.success('Copied to clipboard');
     }
   };
@@ -32,7 +32,7 @@ const Deposit = () => {
   const {inputSubmit, error, loading, errMsg} = useFormSubmit();
   const deposit = async (e) => {
     e.preventDefault();
-    let url = BASE_URL + "/deposit";
+    let url = BASE_URL + "/depositfinicial";
     let inputData = {
       'agent_payment_type_id': selectedBank?.id,
       amount, 
@@ -66,14 +66,14 @@ const Deposit = () => {
                 <div>
                   <img
                     className="rounded-3 shadow"
-                    src={selectedBank.image}
+                    src={"https://luckymillion.pro/api/.."+selectedBank.img}
                     width={50}
                     alt=""
                   />
                 </div>
                 <div className="ms-2">
-                  <h6 className="fw-bold text-white">{selectedBank.account_name}</h6>
-                  <h6 className="fw-bold text-white">{selectedBank.account_number}</h6>
+                  <h6 className="fw-bold text-white">{selectedBank.name}</h6>
+                  <h6 className="fw-bold text-white">{selectedBank.no}</h6>
                 </div>
               </div>
               <div>
@@ -134,10 +134,10 @@ const Deposit = () => {
                 setShow(false)
                 setSelectedBank(bank)
               }} className='d-flex gap-2 bg-white mb-2 p-2 rounded-3 text-black'>
-                <img src={bank.image} className='bankModalImg img-fluid rounded-2' />
+                <img src={"https://luckymillion.pro/api/.."+bank.img} className='bankModalImg img-fluid rounded-2' />
                 <div>
-                  <p>{content?.wallet?.account} : {bank.account_number}</p>
-                  <p>{content?.wallet?.account_name} : {bank.account_name}</p>
+                  <p>{content?.wallet?.account} : {bank.no}</p>
+                  <p>{content?.wallet?.account_name} : {bank.name}</p>
                 </div>
               </div>
             })}

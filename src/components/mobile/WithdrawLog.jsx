@@ -6,7 +6,7 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 
 export default function WithdrawLog() {
   const { content } = useContext(LanguageContext);
-  const { data: logs, loading } = useFetch(BASE_URL + "/withdrawlog");
+  const { data: logs, loading } = useFetch(BASE_URL + "/withdrawlogfinicial");
 
   return (
     <>
