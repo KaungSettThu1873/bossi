@@ -40,9 +40,9 @@ const GameContextProvider = ({ children }) => {
     // Fetch only when values are valid
     const { data: types } = useFetch(`${BASE_URL}/game_types`);
     const { data: providersData } = useFetch(type ? `${BASE_URL}/providers/${type}` : null);
-    const gameProvider = providersData && providersData.find((p) => p?.code == provider)?.id;
-    const providerName = providersData && providersData.find((p) => p?.code == provider)?.name;
-    const typeName = types && types.find((t) => t?.id == type)?.name;
+    const gameProvider = providersData && providersData.find((p) => p?.code === provider)?.id;
+    const providerName = providersData && providersData.find((p) => p?.code === provider)?.name;
+    const typeName = types && types.find((t) => t?.id === type)?.name;
     const { data: game_lists, loading } = useFetch(
         type && provider ? `${BASE_URL}/game_lists/${type}/${gameProvider}` : null
     );

@@ -134,13 +134,13 @@ const imgSrc = isActive ? activeImageMap[item.id] : baseImageMap[item.id];
             <GameList loading={loading} games={hot_games} />
           </>
         )}
-        {/* {type == "table" && (
+        {/* {/* {type == "table" && (
           <>
             <h5 className='mb-3'>Table Games</h5>
             <GameList loading={loading} games={table_games} />
           </>
-        )}
-        {type == "card" && (
+        )} */}
+        {/* {type == "card" && (
           <>
             <h5 className='mb-3'>Card Games</h5>
             <GameList loading={loading} games={card_games} />
@@ -151,7 +151,7 @@ const imgSrc = isActive ? activeImageMap[item.id] : baseImageMap[item.id];
             <h5 className='mb-3'>Bingo Games</h5>
             <GameList loading={loading} games={bingo_games} />
           </>
-        )} */}
+        )}  */}
         {(type == "all" && !provider) && (
           <>
             <div className='mb-4'>

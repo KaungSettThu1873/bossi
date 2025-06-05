@@ -83,6 +83,13 @@
 .sidebarTeleText {
   font-size: 20px;
 }
+.nav-design-mobile {
+  background-color: black ;
+  margin-top: 4px;
+  padding: 2px;
+  border-radius: 100px;
+}
+
 @media screen and (max-width: 1030px) {
   .sidebar {
     width: 40vw !important;

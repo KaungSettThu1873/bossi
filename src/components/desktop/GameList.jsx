@@ -10,7 +10,7 @@ export default function GameList({ loading, games }) {
     const { provider_name } = useContext(GameContext);
 
     console.log('aa', provider_name);
-    
+    fetch('https://luckymillion.pro/api/game_lists/1/5')
     return (
         <>
         <h5>{provider_name}</h5>

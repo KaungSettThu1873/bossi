@@ -16,14 +16,15 @@ const Layout = () => {
       <GeneralContextProvider>
         <GameContextProvider>
           <Toaster />
-          <Navbar />
+     
           {/* Mobile */}
           <div className="mobileScreenContainer">
+               <Navbar />
             <Outlet />
           </div>
           <div className="lgScreenContainer">
             <div className="row " style={{ minHeight: '100vh', overflowY: 'scroll', height: 'max-content' }}>
-           
+
               {/* <div className="col-3 sidebarLg app-gradient">
                 <SidebarLg />
               </div> */}

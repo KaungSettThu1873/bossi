@@ -6,7 +6,7 @@ import { Spinner } from 'react-bootstrap';
 
 const AllTab = () => {
   const {data: types, loading} = useFetch(BASE_URL + "/game_types");
-  // console.log(types);
+  console.log('MobileTypes',types);
   return (
     <div className='p-3'>
       <h5>All Games</h5>

@@ -14,6 +14,7 @@ import viber from '../assets/img/viberw.svg'
 import AdsBanner from "../components/AdsBanner";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { GeneralContext } from "../contexts/GeneralContext";
+import AllTab from "../components/mobile/AllTab";
 
 
 const HomePage = () => {
@@ -47,26 +48,28 @@ const HomePage = () => {
       <Carousel  />
       <div className="px-lg-3">
         <div className="beforeLoginHome my-5 pb-3">
-          <Link to={'/information?tab=transfer'}>
+        <AllTab />
+          {/* <Link to={'/information?tab=transfer'}>
             <button className="w-full py-2 rounded-4 sidebarSocial bg-white text-center text-black fw-bold d-flex justify-content-center flex-nowrap px-2"  >
               <IoWalletOutline size={30} className="me-2" />
               <h4 className="pb-0 mb-0">{content?.wallet?.wallet}</h4>
             </button>
-          </Link>
-          <Link to={'/promotion'} className="mt-4  w-full text-center d-flex align-items-center justify-content-center gap-2   py-2 cursor-pointer homePromotionBtn text-center rounded-4">
+          </Link> */}
+          {/* <Link to={'/promotion'} className="mt-4  w-full text-center d-flex align-items-center justify-content-center gap-2   py-2 cursor-pointer homePromotionBtn text-center rounded-4">
             <FaGift size={28} />
             <h2 className=" fw-semibold pb-0 mb-0 ">{content?.nav?.promotion}</h2>
           </Link>
-          <div className="mt-4 d-flex align-items-center  justify-content-center gap-4">
-            {contacts && contacts.map((contact, index) => {
+          <div className="mt-4 d-flex align-items-center  justify-content-center gap-4"> */}
+            {/* {contacts && contacts.map((contact, index) => {
               return (
                 <Link to={contact.link} key={index}>
                   <img src={contact.image} className="rounded-3" width={50} />
                 </Link>
               );
-            })}
-          </div>
+            })} */}
+          {/* </div> */}
         </div>
+
         {/* Desktop Games Tabs */}
         <GameTabsLg />
       </div>

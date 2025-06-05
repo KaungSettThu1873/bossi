@@ -114,9 +114,16 @@ function NavBar() {
               Profile
             </button>
                 </> )}
+
+
           
           {user && (
             <>
+              <button  className="btn btn-warning btn-sm me-4">
+              <i className="fa-solid fa-money-check-dollar pe-2"></i>
+                {user?.balance}
+              </button>
+
                 <button
               onClick={handleLogout}
               className="btn btn-outline-warning btn-sm me-4"

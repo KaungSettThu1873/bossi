@@ -33,16 +33,6 @@ const BottomMenu = () => {
     <div className="bottomMenu">
       <div className="d-flex justify-content-around bottomMenu app-gradient provider_list overflow-x-auto">
         <div className="py-3 text-center">
-          <Link to="/reels">
-            <img 
-              src={titok} 
-              className={getIconClass('/reels')} 
-              alt="TikTok" 
-            />
-          </Link>
-        </div>
-        
-        <div className="py-3 text-center">
           <Link to="/">
             <img 
               src={home} 
@@ -51,19 +41,7 @@ const BottomMenu = () => {
             />
           </Link>
         </div>
-        
-        {types && types.map((item, index) => (
-          <div key={index} className="py-3 text-center" onClick={() => updateType(item.id)}>
-            <Link to={`/games?type=${item.id}&provider=${providers?.[0]?.code}`}>
-              <img 
-                src={item.img} 
-                className={`${getIconClass('/games', item.id)} ${index === 1 ? 'normalColor' : ''}`} 
-                alt={item.name} 
-              />
-            </Link>
-          </div>
-        ))}
-        
+                
         <div className="py-3 text-center">
           <Link to="/games?tab=table">
             <img 
