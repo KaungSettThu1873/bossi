@@ -73,7 +73,7 @@ function NavBar() {
       <nav className="nav-design">
         <div className="d-flex justify-content-spacebetwenn  justify-content-around">
           <div>
-            <img src={logo} width={130} height={40} />
+            <img src={logo}  className="logoSize" />
           </div>
           <div className="d-flex justify-content-evenly ">
             {/* <a className="me-4">Login</a> */}
@@ -82,9 +82,9 @@ function NavBar() {
                 {/* <button className="btn btn-outline-warning btn-sm me-4">
                   Login
                 </button> */}
-                     <button onClick={() => setShowLogin(true)} className="btn btn-outline-warning btn-sm me-4">Login</button>
+                     <button onClick={() => setShowLogin(true)} className="btn btn-outline-warning nav-btn ">Login</button>
       <Login show={showLogin} handleClose={() => setShowLogin(false)} />
-             <button onClick={() => setShowRegister(true)} className="btn btn-warning">
+             <button onClick={() => setShowRegister(true)} className="btn btn-warning nav-btn">
         Join Now
       </button>
       <Register show={showRegister} onClose={() => setShowRegister(false)} />
@@ -97,7 +97,7 @@ function NavBar() {
                 navigate(navLinks[0].link + "?type=all");
                 setShow(false);
               }}
-              className="btn btn-warning btn-sm me-4"
+              className="btn btn-warning nav-btn mobile-view"
             >
               <i className="fa-solid fa-home me-2"></i>
               Home
@@ -108,7 +108,7 @@ function NavBar() {
                 navigate(navLinks[1].link);
                 setShow(false);
               }}
-              className="btn btn-warning btn-sm me-4"
+              className="btn btn-warning nav-btn mobile-view"
             >
               <i className="fa-solid fa-circle-user me-2"></i>
               Profile
@@ -119,14 +119,14 @@ function NavBar() {
           
           {user && (
             <>
-              <button  className="btn btn-warning btn-sm me-4">
+              <button  className="btn btn-warning nav-btn">
               <i className="fa-solid fa-money-check-dollar pe-2"></i>
                 {user?.balance}
               </button>
 
                 <button
               onClick={handleLogout}
-              className="btn btn-outline-warning btn-sm me-4"
+              className="btn btn-outline-warning nav-btn mobile-view"
             >
               {loading && (
                 <Spinner
@@ -144,9 +144,9 @@ function NavBar() {
                 {user && ( <>
             <button
               onClick={() => setShow(true)}
-              className=" cursor-pointer py-1  rounded text-dark btn btn-warning btn-sm ms-4 me-4"
+              className=" cursor-pointer   rounded text-dark btn btn-warning nav-sideBarBtn"
             >
-              <AlignJustifyIcon size={30} />
+              <AlignJustifyIcon />
             </button>
             </>)}
           </div>

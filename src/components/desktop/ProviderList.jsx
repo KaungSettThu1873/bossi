@@ -54,15 +54,15 @@ export default function ProviderList({ typeCode, type }) {
                 <p className='text-center'>{content?.no_data}</p>
             ) : (
                 providers.map((item, index) => (
-                    <div key={index} className='cursor-pointer col-2 px-1 mb-4'>
-                        <div className='gameCardLg'>
-                            <img src={"https://luckymillion.pro/api/.."+item.img_url} style={{ width: "100%" }} className='img-fluid rounded-top-3' />
+                    <div key={index} className='cursor-pointer col-lg-1 col-md-2 col-sm-4 col-6 mb-4'>
+                        <div className='gameCardLg mb-2'>
+                            <img src={"https://luckymillion.pro/api/.."+item.img_url}  className='img-fluid rounded-top-3 rounded-4 providerDesign' />
                             <div className="rounded-bottom-3 fw-semibold px-2 activeGameList text-black">
-                                <h6 className='pt-1 fw-semibold mb-0 text-white' style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                <h6 className='pt-lg-2 pt-md-2 pt-1  mb-0 text-white' style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' , fontSize: '13px' }}>
                                     {item.product_name}
                                 </h6>
                                 <div className="d-flex align-items-center gap-2">
-                                    <IoGameController className='text-white' size={25} />
+                                    {/* <IoGameController className='text-white' size={25} /> */}
                                     <small className="fw-semibold text-white">{item.short_name}</small>
                                 </div>
                             </div>

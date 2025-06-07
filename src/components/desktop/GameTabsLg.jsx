@@ -64,17 +64,17 @@ const GameTabsLg = () => {
 
 
   return (
-    <div className='px-4 d-none d-lg-block '>
+    <div className='px-4 d-lg-block '>
       <div className="d-flex mt-4 align-items-center gap-2 text-center overflow-x-auto">
         {/* types */}
         <Link to={'/?type=all'} className="cursor-pointer w-100">
-          <div className={`w-75 py-2 rounded-3 ${type == "all" ? "activeGameList" : 'bg-light'}`}>
+          <div className={`rounded-3 gameTabDesign ${type == "all" ? "activeGameList" : 'bg-light'}`}>
             <img src={all} className='rounded-3 ' width={40} height={40}/>
             <div className='rounded-bottom-3' >All Games</div>
           </div>
         </Link>
         <Link to={'/?type=hot'} className="cursor-pointer w-100">
-          <div className={`w-100 py-2 rounded-3 ${type == "hot" ? "activeGameList" : 'bg-light'}`}>
+          <div className={` rounded-3 gameTabDesign ${type == "hot" ? "activeGameList" : 'bg-light'}`}>
             <img src={all} className='rounded-3 ' width={40} height={40}/>
             <div className='rounded-bottom-3' >Hot Games</div>
           </div>
@@ -90,7 +90,7 @@ const imgSrc = isActive ? activeImageMap[item.id] : baseImageMap[item.id];
  {/* <img src={"public/images/Final_All/Fishing/FishingPng.png"} className='rounded-3' width={40} height={40} /> */}
 
           <div onClick={() => navigate(`?type=${item.id}`)} key={index} className="cursor-pointer w-100">
-    <div className={`w-100 py-2 rounded-3 ${isActive ? "activeGameList" : 'bg-light'}`}>
+    <div className={`gameTabDesign rounded-3 ${isActive ? "activeGameList" : 'bg-light'}`}>
       {isActive ? (
         <video width={40} height={40} autoPlay muted loop>
           <source src={imgSrc} type="video/avi" />
@@ -155,20 +155,20 @@ const imgSrc = isActive ? activeImageMap[item.id] : baseImageMap[item.id];
         {(type == "all" && !provider) && (
           <>
             <div className='mb-4'>
-              <h5 className='mb-3'>{content?.game_type?.burmese}</h5>
+              <h5 className='mb-3 fw-bold text-warning'>{content?.game_type?.burmese}</h5>
               <div className="d-flex align-items-center gap-3">
                 <Link to={`https://goldendragon7.pro/?user_name=${user?.user_name}&balance=${user?.balance}`} target='_blank'>
-                  <img src={shan} width={100} alt="" />
+                  <img className='rounded-4 providerDesign' src={shan}  alt="" />
                 </Link>
                 <Link to={`https://ponewine20x.netlify.app/?user_name=${user?.user_name}&balance=${user?.balance}`} target='_blank'>
-                  <img className='rounded-4' src={ponewine} width={100} alt="" />
+                  <img className='rounded-4 providerDesign' src={ponewine} alt="" />
                 </Link>
               </div>
             </div>
             <div className="">
             {gameTabs && gameTabs.map((tab, index) => (
               <div className='w-100' key={index}>
-                <h5 className='mb-3'>{tab.name}</h5>
+                <h4 className='mb-3 fw-bold text-warning'>{tab.name}</h4>
                 <ProviderList typeCode={tab?.code}  type={tab} />
               </div>
             ))}

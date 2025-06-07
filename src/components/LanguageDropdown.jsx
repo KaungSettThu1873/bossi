@@ -18,7 +18,7 @@ const LanguageDropdown = () => {
 
   return (
     <Dropdown>
-      <Dropdown.Toggle className='border-0 px-1 px-lg-2 ' style={{ background: 'transparent' }} id="dropdown-basic">
+      <Dropdown.Toggle className='border-0 px-1 px-lg-2 nav-lan ' style={{ background: 'transparent' }} id="dropdown-basic">
    <img src={flags[lan] || en} className='flag' alt={lan} />
       </Dropdown.Toggle>
 

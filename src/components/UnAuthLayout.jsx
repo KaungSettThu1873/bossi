@@ -21,10 +21,10 @@ const UnAuthLayout = () => {
       <Toaster/>
       <Navbar />
       {/* Mobile */}
-      <div className="mobileScreenContainer">
+      {/* <div className="mobileScreenContainer">
         <Outlet />
-      </div>
-      <div className="lgScreenContainer"> 
+      </div> */}
+      <div > 
       <div className="row " style={{minHeight:'100vh',overflowY:'scroll',height:'max-content'}}>
         <div className="col-3 sidebarLg app-gradient">
           <SidebarLg/>

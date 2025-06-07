@@ -113,9 +113,9 @@ width: 80px;
    display: none;
    z-index: 99;
  }
- .mobileScreenContainer{
+ /* .mobileScreenContainer{
     display: none;
- }
+ } */
  .navCoin{
   width: 18px;
   height: 18px;
@@ -137,9 +137,9 @@ width: 80px;
   width: 35px;
   height: 35px;
  }
- .lgScreenContainer{
+ /* .lgScreenContainer{
     display: block;
-  }
+  } */
   .sidebarLgContainer{
     position: fixed;
     top: 0;

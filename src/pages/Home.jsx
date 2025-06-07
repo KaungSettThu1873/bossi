@@ -47,8 +47,8 @@ const HomePage = () => {
       </div>
       <Carousel  />
       <div className="px-lg-3">
-        <div className="beforeLoginHome my-5 pb-3">
-        <AllTab />
+        {/* <div className="beforeLoginHome my-5 pb-3"> */}
+        {/* <AllTab /> */}
           {/* <Link to={'/information?tab=transfer'}>
             <button className="w-full py-2 rounded-4 sidebarSocial bg-white text-center text-black fw-bold d-flex justify-content-center flex-nowrap px-2"  >
               <IoWalletOutline size={30} className="me-2" />
@@ -68,7 +68,7 @@ const HomePage = () => {
               );
             })} */}
           {/* </div> */}
-        </div>
+        {/* </div> */}
 
         {/* Desktop Games Tabs */}
         <GameTabsLg />
