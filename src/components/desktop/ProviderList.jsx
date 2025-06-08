@@ -49,33 +49,68 @@ export default function ProviderList({ typeCode, type }) {
     if (loading) return <Spinner animation="border" />;
 
     return (
-        <div className='row'>
+        <div className='scroll-row d-flex overflow-auto px-2'>
             {providers.length === 0 ? (
                 <p className='text-center'>{content?.no_data}</p>
             ) : (
                 providers.map((item, index) => (
-                    <div key={index} className='cursor-pointer col-lg-1 col-md-2 col-sm-4 col-6 mb-4'>
-                        <div className='gameCardLg mb-2'>
-                            <img src={"https://luckymillion.pro/api/.."+item.img_url}  className='img-fluid rounded-top-3 rounded-4 providerDesign' />
-                            <div className="rounded-bottom-3 fw-semibold px-2 activeGameList text-black">
-                                <h6 className='pt-lg-2 pt-md-2 pt-1  mb-0 text-white' style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' , fontSize: '13px' }}>
-                                    {item.product_name}
-                                </h6>
-                                <div className="d-flex align-items-center gap-2">
-                                    {/* <IoGameController className='text-white' size={25} /> */}
-                                    <small className="fw-semibold text-white">{item.short_name}</small>
-                                </div>
-                            </div>
-                            <div className="gameCardLgBtn rounded-5 d-flex align-items-center justify-content-center shadow-lg"
-                                onClick={() => {
-                                    navigate(`/?type=${type?.id}&provider=${item.code}`);
-                                    updateType(type.code);
-                                    updateProvider(item.code);
-                                }}>
-                                <p className="fw-semibold">{content?.btn?.go_to_list}</p>
-                            </div>
-                        </div>
-                    </div>
+           <div
+  key={index}
+  className="cursor-pointer col-lg-2 col-md-2 col-sm-2 col-5 mb-4 px-2"
+>
+  <div className="gold-card rounded-4 overflow-hidden position-relative ">
+    <img
+      src={"https://luckymillion.pro/api/.." + item.img_url}
+      className="img-fluid w-100 card-height "
+      style={{
+ 
+        // objectFit: "cover",
+        borderTopLeftRadius: "1rem",
+        borderTopRightRadius: "1rem",
+      }}
+    />
+    <div
+      className="px-3 py-2"
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        color: "#fff",
+      }}
+    >
+      <h6
+        className="mb-1"
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          fontSize: "13px",
+        }}
+      >
+        {item.product_name}
+      </h6>
+      <div className="d-flex align-items-center gap-2">
+        <small className="fw-medium text-white">{item.short_name}</small>
+      </div>
+    </div>
+    <div
+      className="gameCardLgBtn position-absolute bottom-0 start-50 translate-middle-x mb-2 px-3 py-1 rounded-pill shadow"
+      style={{
+        background: "linear-gradient(90deg, #FFD700, #FFA500)",
+        color: "#000",
+        fontWeight: "600",
+        fontSize: "12px",
+        cursor: "pointer",
+      }}
+      onClick={() => {
+        navigate(`/?type=${type?.id}&provider=${item.code}`);
+        updateType(type.code);
+        updateProvider(item.code);
+      }}
+    >
+      {content?.btn?.go_to_list}
+    </div>
+  </div>
+</div>
+
                 ))
             )}
         </div>

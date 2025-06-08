@@ -80,6 +80,7 @@ const InformationPage = () => {
         {tab === "transfer" && <MoneyTransfer />}
         {tab === "logs" && <Log />}
       </div>
+      
     </div>
   );
 };

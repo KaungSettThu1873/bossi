@@ -15,11 +15,10 @@ import AdsBanner from "../components/AdsBanner";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { GeneralContext } from "../contexts/GeneralContext";
 import AllTab from "../components/mobile/AllTab";
-import { AuthContext } from "../contexts/AuthContext";
+import BottomMenu from "../components/mobile/BottomMenu";
 
 
 const HomePage = () => {
-   const { user } = useContext(AuthContext);
   const { banners, ads_banner, banner_text, contacts } = useContext(GeneralContext);
   const { content } = useContext(LanguageContext);
   const navigate = useNavigate();
@@ -44,13 +43,10 @@ const HomePage = () => {
     <div >
       <AdsBanner ads_banner={ads_banner} />
       <div className="d-flex align-items-center bg-none bg-sm-black">
-
-   {user && ( <>
-   <Marquee />
-     <Carousel  />
-   </> )}
+        <Marquee />
+  
       </div>
-     
+      <Carousel  />
       <div className="px-lg-3">
         {/* <div className="beforeLoginHome my-5 pb-3"> */}
         {/* <AllTab /> */}
@@ -78,7 +74,9 @@ const HomePage = () => {
         {/* Desktop Games Tabs */}
         <GameTabsLg />
       </div>
+            {/* <BottomMenu /> */}
       <Footer />
+
     </div>
   );
 };

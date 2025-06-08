@@ -8,8 +8,9 @@ import { GameContext } from '../../contexts/GameContext';
 import all from '../../assets/img/all.png';
 import slot from '../../assets/img/slotL.png';
 import casino from '../../assets/img/casinoL.png';
-
+import { AuthContext } from "../../contexts/AuthContext";
 const BottomMenu = () => {
+    const { user } = useContext(AuthContext);
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const { content } = useContext(LanguageContext);
@@ -30,49 +31,32 @@ const BottomMenu = () => {
   };
 
   return (
-    <div className="bottomMenu">
-      <div className="d-flex justify-content-around bottomMenu app-gradient provider_list overflow-x-auto">
+    (user && (<>
+ <div className="bottomMenu ">
+      <div className="d-flex justify-content-around bottomMenu text-warning provider_list overflow-x-auto">
         <div className="py-3 text-center">
           <Link to="/">
-            <img 
-              src={home} 
-              className={getIconClass('/')+'normalColor'} 
-              alt="Home" 
-            />
+             <i className="fa-solid fa-home me-2"></i>
           </Link>
         </div>
                 
         <div className="py-3 text-center">
-          <Link to="/games?tab=table">
-            <img 
-              src={all} 
-              className={getIconClass('/games?tab=table')} 
-              alt="All" 
-            />
+          <Link to="/information?tab=profile">
+          <i className="fa-solid fa-user"></i>
           </Link>
         </div>
         
         <div className="py-3 text-center">
-          <Link to="/games?tab=card">
-            <img 
-              src={slot} 
-              className={getIconClass('/games?tab=card')} 
-              alt="Slots" 
-            />
+          <Link to="/information?tab=transfer">
+           <i className="fa-solid fa-money-bill-transfer"></i>
           </Link>
         </div>
         
-        <div className="py-3 text-center">
-          <Link to="/games?tab=bingo">
-            <img 
-              src={casino} 
-              className={getIconClass('/games?tab=bingo')} 
-              alt="Casino" 
-            />
-          </Link>
-        </div>
+       
       </div>
     </div>
+    </>))
+   
   );
 };
 

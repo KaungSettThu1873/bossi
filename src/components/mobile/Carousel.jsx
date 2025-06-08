@@ -1,13 +1,16 @@
 import React, { useContext } from 'react'
 import { Carousel } from 'react-bootstrap'
 import { GeneralContext } from '../../contexts/GeneralContext';
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Carousels = () => {
   const {banners} = useContext(GeneralContext);
+    const { user } = useContext(AuthContext);
 
 
   return (
-    <div className='carouselContainer p-sm-4'>
+    (user && (<>
+         <div className='carouselContainer p-sm-4'>
       <Carousel>
         {banners && banners.map((item, index) => {
           return <Carousel.Item key={index}>
@@ -16,6 +19,8 @@ const Carousels = () => {
         })}
       </Carousel>
     </div>
+    </>))
+ 
   )
 }
 

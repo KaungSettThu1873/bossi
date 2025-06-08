@@ -138,6 +138,7 @@ object-position: center;
   margin-top: 10px;
   padding: 13px;
   border-radius: 100px;
+  margin-bottom: 10px;
 }
 
 .nav-btn {
@@ -186,11 +187,15 @@ object-position: center;
     height: 70px;
     padding-top: 5px;
   }
-
+/* 
   .providerDesign {
-    width: 100px;
-    height: 130px;
+    width: 250px;
+    height: 200px;
     margin-right: 38px;
+  } */
+
+  .card-height {
+    height: 200px;
   }
 
 
@@ -240,6 +245,16 @@ object-position: center;
   padding-bottom: 25px;
   margin-right: 4px;
 }
+
+  /* .providerDesign {
+    width: 230px !important;
+    height: 180px;
+    margin-right: 38px;
+  } */
+
+  .card-height {
+    height: 150px;
+  }
 
 
 
@@ -291,11 +306,17 @@ width: 100px;
   height: 40px;
 }
 
- .providerDesign {
-    width: 80px;
+ /* .providerDesign {
+    width: 200px !important;
+    height: 180px;
+    margin-right: 38px;
+  } */
+
+    .card-height {
     height: 130px;
-    margin-right: 4px;
   }
+
+
 }
 
 
@@ -305,7 +326,7 @@ width: 100px;
     margin-top: 5px;
     border-radius: 40px;
      padding-bottom: 5px;
-       margin-bottom: 10px;
+       margin-bottom: 5px;
   }
     .mobile-view {
     display: none;
@@ -359,7 +380,7 @@ width: 100px;
     padding-bottom: 5px;
     /* margin-top: 5px; */
     border-radius: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
     .mobile-view {
@@ -491,4 +512,36 @@ width: 100px;
   .promotionImg{
     height: 130px;
   }
+}
+
+.gold-card {
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  background-clip: padding-box;
+  position: relative;
+  background-origin: border-box;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.gold-card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(135deg, #ff9100, #FFA500);
+  border-radius: inherit;
+}
+
+.scroll-row::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-row::-webkit-scrollbar-thumb {
+  background: rgb(255, 238, 0);
+  border-radius: 10px;
+}
+.scroll-row::-webkit-scrollbar-track {
+  background: transparent;
 }
