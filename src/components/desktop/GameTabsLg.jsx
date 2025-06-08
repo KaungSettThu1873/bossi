@@ -10,6 +10,7 @@ import GameList from "./GameList";
 import ProviderList from "./ProviderList";
 import shan from "../../assets/img/shan.jpg";
 import ponewine from "../../assets/img/ponewine.jpg";
+import styles from './GameTabsLg.module.css';
 
 const GameTabsLg = () => {
   const { content } = useContext(LanguageContext);
@@ -66,90 +67,39 @@ const GameTabsLg = () => {
     // 14: "/assets/my_local_images/premium.png",
   };
 
+  // Use the first game type's image as a fallback for All Games/Hot Games
+  const defaultTabImg = gameTabs && gameTabs.length > 0 ? gameTabs[0].img : '';
+
   return (
     <div className="px-4 d-lg-block ">
-      <div className="d-flex mt-4 align-items-center gap-2 text-center overflow-x-auto">
-        {/* types */}
-        <Link to={"/?type=all"} className="cursor-pointer w-100">
-          <div
-            className={`rounded-3 gameTabDesign ${
-              type == "all" ? "activeGameList" : "bg-light"
-            }`}
-          >
-            <img src={all} className="rounded-3 " width={40} height={40} />
-            <div className="rounded-bottom-3">All Games</div>
-          </div>
-        </Link>
-        <Link to={"/?type=hot"} className="cursor-pointer w-100">
-          <div
-            className={` rounded-3 gameTabDesign ${
-              type == "hot" ? "activeGameList" : "bg-light"
-            }`}
-          >
-            <img src={all} className="rounded-3 " width={40} height={40} />
-            <div className="rounded-bottom-3">Hot Games</div>
-          </div>
-        </Link>
-
+      <div className={styles.tabScrollRow}>
+        <button
+          className={`${styles.tabBtn} ${type === "all" ? styles.tabBtnActive : ""}`}
+          onClick={() => navigate("/?type=all")}
+        >
+          <img src={defaultTabImg} className={styles.tabBtnImg} alt="All Games" />
+          <span>All Games</span>
+        </button>
+        <button
+          className={`${styles.tabBtn} ${type === "hot" ? styles.tabBtnActive : ""}`}
+          onClick={() => navigate("/?type=hot")}
+        >
+          <img src={defaultTabImg} className={styles.tabBtnImg} alt="Hot Games" />
+          <span>Hot Games</span>
+        </button>
         {gameTabs &&
           gameTabs
             .filter((item) => ![6, 12, 13, 14].includes(item.id))
-            .map((item, index) => {
-              const isActive = type == item.id;
-              const imgSrc = isActive
-                ? activeImageMap[item.id]
-                : baseImageMap[item.id];
-              return (
-                <>
-                  {/* <img src={"public/images/Final_All/Fishing/FishingPng.png"} className='rounded-3' width={40} height={40} /> */}
-
-                  <div
-                    onClick={() => navigate(`?type=${item.id}`)}
-                    key={index}
-                    className="cursor-pointer w-100"
-                  >
-                    <div
-                      className={`gameTabDesign rounded-3 ${
-                        isActive ? "activeGameList" : "bg-light"
-                      }`}
-                    >
-                      {isActive ? (
-                        <video width={40} height={40} autoPlay muted loop>
-                          <source src={imgSrc} type="video/avi" />
-                          Your browser does not support the video tag.
-                        </video>
-                      ) : (
-                        <img
-                          src={imgSrc}
-                          className="rounded-3"
-                          width={40}
-                          height={40}
-                        />
-                      )}
-                      <div className="rounded-bottom-3">{item.name}</div>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-        {/* <Link to={'/?type=table'} className="cursor-pointer w-100">
-          <div className={`w-75 py-2 rounded-3 ${type == "table" ? "activeGameList" : 'bg-light'}`}>
-            <img src={slot} className='rounded-3 ' width={40} height={40} />
-            <div className='rounded-bottom-3' >Tables</div>
-          </div>
-        </Link>
-        <Link to={'/?type=card'} className="cursor-pointer w-100">
-          <div className={`w-75 py-2 rounded-3 ${type == "card" ? "activeGameList" : 'bg-light'}`}>
-            <img src={casino} className='rounded-3 ' width={40} height={40} />
-            <div className='rounded-bottom-3' >Cards</div>
-          </div>
-        </Link>
-        <Link to={'/?type=bingo'} className="cursor-pointer w-100">
-          <div className={`w-75 py-2 rounded-3 ${type == "bingo" ? "activeGameList" : 'bg-light'}`}>
-            <img src={slot} className='rounded-3 ' width={40} height={40} />
-            <div className='rounded-bottom-3' >Bingos</div>
-          </div>
-        </Link> */}
+            .map((item) => (
+              <button
+                key={item.id}
+                className={`${styles.tabBtn} ${type == item.id ? styles.tabBtnActive : ""}`}
+                onClick={() => navigate(`?type=${item.id}`)}
+              >
+                <img src={`https://luckymillion.pro${item.img}`} className={styles.tabBtnImg} alt={item.name} />
+                <span>{item.name}</span>
+              </button>
+            ))}
       </div>
       <div className="row mt-4">
         {/* gamelists */}

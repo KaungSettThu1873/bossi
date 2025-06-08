@@ -11,40 +11,36 @@ export default function ProviderList({ typeCode, type }) {
     const { updateType, updateProvider } = useContext(GameContext);
     const navigate = useNavigate();
 
-   
-
     const [providers, setProviders] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (typeCode) {
             setLoading(true);
-          fetch(`${BASE_URL}/providers/${typeCode}`, {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  }
-}) 
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error(`HTTP error! status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then(data => {
-                    console.log('Fetched providers data:', data);
-                    setProviders(data.data || []);
-                    setLoading(false);
-                })
-                .catch(error => {
-                    console.error('Error fetching providers:', error);
-                    setLoading(false);
-                });
+            fetch(`${BASE_URL}/providers/${typeCode}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                setProviders(data.data || []);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching providers:', error);
+                setLoading(false);
+            });
         }
     }, [typeCode]);
-
-  
 
     if (loading) return <Spinner animation="border" />;
 
@@ -54,63 +50,60 @@ export default function ProviderList({ typeCode, type }) {
                 <p className='text-center'>{content?.no_data}</p>
             ) : (
                 providers.map((item, index) => (
-           <div
-  key={index}
-  className="cursor-pointer col-lg-2 col-md-2 col-sm-2 col-5 mb-4 px-2"
->
-  <div className="gold-card rounded-4 overflow-hidden position-relative ">
-    <img
-      src={"https://luckymillion.pro/api/.." + item.img_url}
-      className="img-fluid w-100 card-height "
-      style={{
- 
-        // objectFit: "cover",
-        borderTopLeftRadius: "1rem",
-        borderTopRightRadius: "1rem",
-      }}
-    />
-    <div
-      className="px-3 py-2"
-      style={{
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-        color: "#fff",
-      }}
-    >
-      <h6
-        className="mb-1"
-        style={{
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          fontSize: "13px",
-        }}
-      >
-        {item.product_name}
-      </h6>
-      <div className="d-flex align-items-center gap-2">
-        <small className="fw-medium text-white">{item.short_name}</small>
-      </div>
-    </div>
-    <div
-      className="gameCardLgBtn position-absolute bottom-0 start-50 translate-middle-x mb-2 px-3 py-1 rounded-pill shadow"
-      style={{
-        background: "linear-gradient(90deg, #FFD700, #FFA500)",
-        color: "#000",
-        fontWeight: "600",
-        fontSize: "12px",
-        cursor: "pointer",
-      }}
-      onClick={() => {
-        navigate(`/?type=${type?.id}&provider=${item.code}`);
-        updateType(type.code);
-        updateProvider(item.code);
-      }}
-    >
-      {content?.btn?.go_to_list}
-    </div>
-  </div>
-</div>
-
+                    <div
+                        key={index}
+                        className="cursor-pointer col-lg-2 col-md-2 col-sm-2 col-5 mb-4 px-2"
+                    >
+                        <div className="gold-card rounded-4 overflow-hidden position-relative">
+                            <img
+                                src={"https://luckymillion.pro/api/.." + item.img_url}
+                                className="img-fluid w-100 card-height"
+                                style={{
+                                    borderTopLeftRadius: "1rem",
+                                    borderTopRightRadius: "1rem",
+                                }}
+                            />
+                            <div
+                                className="px-3 py-2"
+                                style={{
+                                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                                    color: "#fff",
+                                }}
+                            >
+                                <h6
+                                    className="mb-1"
+                                    style={{
+                                        whiteSpace: "nowrap",
+                                        overflow: "hidden",
+                                        textOverflow: "ellipsis",
+                                        fontSize: "13px",
+                                    }}
+                                >
+                                    {item.product_name}
+                                </h6>
+                                <div className="d-flex align-items-center gap-2">
+                                    <small className="fw-medium text-white">{item.short_name}</small>
+                                </div>
+                            </div>
+                            <div
+                                className="gameCardLgBtn position-absolute bottom-0 start-50 translate-middle-x mb-2 px-3 py-1 rounded-pill shadow"
+                                style={{
+                                    background: "linear-gradient(90deg, #FFD700, #FFA500)",
+                                    color: "#000",
+                                    fontWeight: "600",
+                                    fontSize: "12px",
+                                    cursor: "pointer",
+                                }}
+                                onClick={() => {
+                                    navigate(`/?type=${type?.id}&provider=${item.id}`);
+                                    updateType(type.id);
+                                    updateProvider(item.id);
+                                }}
+                            >
+                                {content?.btn?.go_to_list}
+                            </div>
+                        </div>
+                    </div>
                 ))
             )}
         </div>

@@ -1,45 +1,149 @@
-import React, { useContext } from 'react'
-import launchGame from "../../hooks/LaunchGame";
+import React, { useContext, useEffect, useState } from 'react'
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { Spinner } from 'react-bootstrap';
-import { IoGameController } from 'react-icons/io5'
 import { GameContext } from '../../contexts/GameContext';
+import BASE_URL from '../../hooks/baseUrl';
+import styles from './GameList.module.css';
 
 export default function GameList({ loading, games }) {
     const { content } = useContext(LanguageContext);
-    const { provider_name } = useContext(GameContext);
+    const { current_type, current_provider } = useContext(GameContext);
+    const [launchingGameId, setLaunchingGameId] = useState(null);
+    const [launchError, setLaunchError] = useState('');
 
-    console.log('aa', provider_name);
-    fetch('https://luckymillion.pro/api/game_lists/1/5')
+    // Pagination states
+    const [page, setPage] = useState(1);
+    const [allGames, setAllGames] = useState([]);
+    const [hasMore, setHasMore] = useState(true);
+    const [loadingMore, setLoadingMore] = useState(false);
+
+    // Reset when type/provider changes
+    useEffect(() => {
+        setPage(1);
+        setAllGames([]);
+        setHasMore(true);
+    }, [current_type, current_provider]);
+
+    // Initial load or when type/provider changes
+    useEffect(() => {
+        if (!current_type || !current_provider) return;
+        setLoadingMore(true);
+        fetch(`${BASE_URL}/game_lists/${current_type}/${current_provider}?page=1`, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'Accept': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                setAllGames(data.data || []);
+                setHasMore((data.data || []).length === 20);
+                setLoadingMore(false);
+            });
+    }, [current_type, current_provider]);
+
+    // Load more handler
+    const handleLoadMore = () => {
+        const nextPage = page + 1;
+        setLoadingMore(true);
+        fetch(`${BASE_URL}/game_lists/${current_type}/${current_provider}?page=${nextPage}`, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'Accept': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                setAllGames(prev => [...prev, ...(data.data || [])]);
+                setPage(nextPage);
+                setHasMore((data.data || []).length === 20);
+                setLoadingMore(false);
+            });
+    };
+
+    const handleLaunchGame = async (game) => {
+        setLaunchingGameId(game.id);
+        setLaunchError('');
+        try {
+            const res = await fetch(`${BASE_URL}/seamless/launch-game`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                },
+                body: JSON.stringify({
+                    game_code: game.game_code,
+                    product_code: game.product_code,
+                    game_type: game.game_type,
+                }),
+            });
+            const result = await res.json();
+            if (result.code === 200 && result.url) {
+                window.open(result.url, '_blank', 'noopener');
+            } else {
+                setLaunchError(result.message || 'Failed to launch game.');
+            }
+        } catch (e) {
+            setLaunchError('Network error. Please try again.');
+        } finally {
+            setLaunchingGameId(null);
+        }
+    };
+
+    if ((loading || loadingMore) && allGames.length === 0) return <Spinner />;
+    if (!allGames || allGames.length === 0) return <p className='text-center'>{content?.no_data}</p>;
+
     return (
         <>
-        <h5>{provider_name}</h5>
-            {loading ? <Spinner /> : games && games.length === 0 ? <p className='text-center'>{content?.no_data}</p> :
-                games && games.map((item, index) => {
-                    return <div key={index} className='cursor-pointer col-2 px-1 mb-4 '>
-                        <div className='gameCardLg'>
-                            <img src={item.img}
-                                style={{ height: '150px', width: "100%" }}
-                                className='img-fluid rounded-top-3' />
-                            <div className="rounded-bottom-3 fw-semibold px-2 activeGameList text-black">
-                                <small
-                                    className='py-1 d-block fw-semibold mb-0 text-white'
-                                    width="100%"
-                                    style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+            <div className="row">
+                {launchError && (
+                    <div className="col-12 mb-3">
+                        <div className="alert alert-danger" role="alert">
+                            {launchError}
+                        </div>
+                    </div>
+                )}
+                {allGames.map((item, index) => (
+                    <div key={index} className="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div className={styles['game-card']}>
+                            <img
+                                src={item.image_url}
+                                className={styles['game-card-img']}
+                                alt={item.game_name}
+                            />
+                            <div className={styles['game-card-body']}>
+                                <div className={styles['game-card-title']} title={item.game_name}>
+                                    {item.game_name}
+                                </div>
+                                <button
+                                    className={styles['play-btn']}
+                                    onClick={() => handleLaunchGame(item)}
+                                    disabled={launchingGameId === item.id}
                                 >
-                                    {item.name}
-                                    {/* {item.provider_code} */}
-                                </small>
-                            </div>
-                            <div
-                                className="gameCardLgBtn rounded-5 d-flex align-items-center justify-content-center shadow-lg"
-                                onClick={launchGame(item.type_id, item.provider_code, item.code)}
-                            >
-                                <p className="fw-semibold">{content?.btn?.play_game}</p>
+                                    {launchingGameId === item.id ? (
+                                        <Spinner animation="border" size="sm" />
+                                    ) : (
+                                        content?.btn?.play_game
+                                    )}
+                                </button>
                             </div>
                         </div>
                     </div>
-                })}
+                ))}
+            </div>
+            {hasMore && (
+                <div className="text-center my-3">
+                    <button
+                        className={styles['play-btn']}
+                        style={{ maxWidth: 200 }}
+                        onClick={handleLoadMore}
+                        disabled={loadingMore}
+                    >
+                        {loadingMore ? <Spinner animation="border" size="sm" /> : 'Load More'}
+                    </button>
+                </div>
+            )}
         </>
-    )
+    );
 }

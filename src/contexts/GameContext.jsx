@@ -14,10 +14,7 @@ const GameContext = createContext({
     type_name: null,
     game_lists: null,
     hot_games: null,
-    loading: false,
-    card_games: [],
-    table_games: [],
-    bingo_games: []
+    loading: false
 });
 
 const GameContextProvider = ({ children }) => {
@@ -39,19 +36,27 @@ const GameContextProvider = ({ children }) => {
 
     // Fetch only when values are valid
     const { data: types } = useFetch(`${BASE_URL}/game_types`);
-    const { data: providersData } = useFetch(type ? `${BASE_URL}/providers/${type}` : null);
-    const gameProvider = providersData && providersData.find((p) => p?.code === provider)?.id;
-    const providerName = providersData && providersData.find((p) => p?.code === provider)?.name;
-    const typeName = types && types.find((t) => t?.id === type)?.name;
+    
+    // Find the selected game type to get its code
+    const selectedGameType = types?.find((t) => t?.id === parseInt(type));
+    const gameTypeCode = selectedGameType?.code || null;
+    
+    // Fetch providers using game type code
+    const { data: providersData } = useFetch(gameTypeCode ? `${BASE_URL}/providers/${gameTypeCode}` : null);
+    
+    // Find the provider ID from the providers data
+    const selectedProvider = providersData?.find((p) => p?.id === parseInt(provider));
+    const providerName = selectedProvider?.product_name || null;
+    const typeName = selectedGameType?.name || null;
+    
+    // Only fetch game lists when both type and provider are valid
     const { data: game_lists, loading } = useFetch(
-        type && provider ? `${BASE_URL}/game_lists/${type}/${gameProvider}` : null
+        type && selectedProvider ? `${BASE_URL}/game_lists/${type}/${selectedProvider.id}` : null
     );
     const { data: hot_games } = useFetch(`${BASE_URL}/hot_game_lists`);
-    const { data: special_games } = useFetch(`${BASE_URL}/special_game_lists`);
-
+    
     const updateType = (newType) => setType(newType);
     const updateProvider = (newProvider) => setProvider(newProvider);
-    console.log('11',providersData);
 
     const value = useMemo(
         () => ({
@@ -60,17 +65,14 @@ const GameContextProvider = ({ children }) => {
             current_provider: provider,
             updateType,
             updateProvider,
-            provider_name: providerName || null,
-            type_name: typeName || null,
+            provider_name: providerName,
+            type_name: typeName,
             providers: providersData || null,
             game_lists: game_lists || null,
             hot_games: hot_games || null,
             loading,
-            card_games: special_games?.cards || null,
-            table_games: special_games?.tables || null,
-            bingo_games: special_games?.bingos || null
         }),
-        [types, providersData, game_lists, hot_games, loading]
+        [types, providersData, game_lists, hot_games, loading, type, provider, providerName, typeName]
     );
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
