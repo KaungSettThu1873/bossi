@@ -52,38 +52,42 @@ export default function ProviderList({ typeCode, type }) {
                 providers.map((item, index) => (
                     <div
                         key={index}
-                        className="cursor-pointer col-lg-2 col-md-2 col-sm-2 col-5 mb-4 px-2"
+                        className="cursor-pointer  mb-4 px-2 " 
                     >
-                        <div className="gold-card rounded-4 overflow-hidden position-relative">
+                        <div className="gold-card rounded-4  ">
                             <img
                                 src={"https://luckymillion.pro/api/.." + item.img_url}
-                                className="img-fluid w-100 card-height"
+                                className="  card-ratio  "
                                 style={{
                                     borderTopLeftRadius: "1rem",
                                     borderTopRightRadius: "1rem",
+                                    border: "none"
                                 }}
                             />
                             <div
-                                className="px-3 py-2"
+                                className="px-3 py-2 mt-1 text-center"
                                 style={{
                                     backgroundColor: "rgba(0, 0, 0, 0.7)",
                                     color: "#fff",
+                                      overflow: "hidden !important",
+                                      borderRadius: "200px"
                                 }}
                             >
                                 <h6
                                     className="mb-1"
                                     style={{
                                         whiteSpace: "nowrap",
-                                        overflow: "hidden",
+                                        overflow: "hidden !important",
                                         textOverflow: "ellipsis",
                                         fontSize: "13px",
+                                        
                                     }}
                                 >
                                     {item.product_name}
                                 </h6>
-                                <div className="d-flex align-items-center gap-2">
+                                {/* <div className="d-flex align-items-center gap-2">
                                     <small className="fw-medium text-white">{item.short_name}</small>
-                                </div>
+                                </div> */}
                             </div>
                             <div
                                 className="gameCardLgBtn position-absolute bottom-0 start-50 translate-middle-x mb-2 px-3 py-1 rounded-pill shadow"

@@ -19,18 +19,19 @@
   border-radius: 4px;
 }
 .tabBtn {
+  margin-top: 20px;
   background: #393e46;
   color: #fff;
   border: none;
   border-radius: 0.75rem;
-  padding: 0.75rem 1.25rem 0.5rem 1.25rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 110px;
   transition: background 0.2s, box-shadow 0.2s, color 0.2s;
   font-weight: 600;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   cursor: pointer;
   outline: none;

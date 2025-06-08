@@ -194,8 +194,14 @@ object-position: center;
     margin-right: 38px;
   } */
 
-  .card-height {
-    height: 200px;
+  .card-ratio {
+    width: 150px ;
+    height: 150px;
+  }
+
+  
+  .gameTabFontSize {
+    font-size: 16px;
   }
 
 
@@ -252,11 +258,14 @@ object-position: center;
     margin-right: 38px;
   } */
 
-  .card-height {
+    .card-ratio {
+    width: 150px ;
     height: 150px;
   }
 
-
+  .gameTabFontSize {
+    font-size: 10px;
+  }
 
 }
 
@@ -312,9 +321,15 @@ width: 100px;
     margin-right: 38px;
   } */
 
-    .card-height {
-    height: 130px;
+  .card-ratio {
+    width: 120px ;
+    height: 120px;
   }
+
+   .gameTabFontSize {
+    font-size: 10px;
+  }
+
 
 
 }
@@ -371,6 +386,20 @@ width: 100px;
     height: 130px;
     margin-right: 38px;
   }
+
+    .card-ratio {
+    width: 100px ;
+    height: 100px;
+  }
+
+  .gameTabFontSize {
+    font-size: 10px;
+  }
+
+   .gameTabFontSize {
+    font-size: 10px;
+  }
+
 
 }
 
@@ -429,6 +458,15 @@ width: 100px;
     width: 100px;
     height: 130px;
     margin-right: 38px;
+  }
+
+      .card-ratio {
+    width: 100px ;
+    height: 100px;
+  }
+  
+   .gameTabFontSize {
+    font-size: 8px;
   }
 
 

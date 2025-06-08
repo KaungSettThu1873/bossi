@@ -30,7 +30,7 @@ function NavBar() {
   const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
   const navLinks = [
-    { img: home, name: content?.nav?.home, link: "/" },
+    { img: home, name: content?.nav?.home, link: "/?type=all" },
     {
       img: profile,
       name: content?.profile?.my_profile,

@@ -10,7 +10,7 @@ import GameList from "./GameList";
 import ProviderList from "./ProviderList";
 import shan from "../../assets/img/shan.jpg";
 import ponewine from "../../assets/img/ponewine.jpg";
-import styles from './GameTabsLg.module.css';
+import styles from "./GameTabsLg.module.css";
 
 const GameTabsLg = () => {
   const { content } = useContext(LanguageContext);
@@ -51,41 +51,48 @@ const GameTabsLg = () => {
   };
 
   const activeImageMap = {
-    1: "/images/Final_All/Slot/SlotSample.avi",
-    2: "/images/Final_All/Casino/LiveCasinoSample.avi",
-    3: "/images/Final_All/SportBook/SportBookSample.avi",
-    4: "/images/Final_All/VirtualSport/VirtualSportSample.avi",
-    5: "/images/Final_All/Lottery/LotterySample.avi",
+    1: "/images/Final_All/Slot/APNG Slot.png",
+    2: "/images/Final_All/Casino/APNGLive Casino.png",
+    3: "/images/Final_All/Sport Book/Sport Sport Book APNG.png",
+    4: "/images/Final_All/Virtual Sport/APNG Virtual sport.png",
+    5: "/images/Final_All/Lottery/APNG Lottery.png",
     // 6: "/./assets/my_local_images/qipai.png",
-    7: "/images/Final_All/P2P/P2PSample.avi",
-    8: "/images/Final_All/Fishing/fishingSample.avi",
-    9: "/images/Final_All/CockFighting/CockFishingSAMPLE.avi",
-    10: "/images/Final_All/Bonus/BonusSample.avi",
-    11: "/images/Final_All/E-Sport/E-SportSample.avi",
+    7: "/images/Final_All/P2P/APNG P2P.png",
+    8: "/images/Final_All/Fishing/APNG fishing.png",
+    9: "/images/Final_All/Cock Fighting/Cock Fishing APNG.png",
+    10: "/images/Final_All/Bonus/APNG Bonus.png",
+    11: "/images/Final_All/E-Sport/APNG E-sport.png",
     // 12: "/assets/my_local_images/poker.png",
     // 13: "/assets/my_local_images/others.png",
     // 14: "/assets/my_local_images/premium.png",
   };
 
   // Use the first game type's image as a fallback for All Games/Hot Games
-  const defaultTabImg = gameTabs && gameTabs.length > 0 ? gameTabs[0].img : '';
+  const defaultTabImg = gameTabs && gameTabs.length > 0 ? gameTabs[0].img : "";
 
   return (
     <div className="px-4 d-lg-block ">
       <div className={styles.tabScrollRow}>
-        <button
+        {/* <button
           className={`${styles.tabBtn} ${type === "all" ? styles.tabBtnActive : ""}`}
           onClick={() => navigate("/?type=all")}
         >
           <img src={defaultTabImg} className={styles.tabBtnImg} alt="All Games" />
           <span>All Games</span>
-        </button>
+        </button> */}
         <button
-          className={`${styles.tabBtn} ${type === "hot" ? styles.tabBtnActive : ""}`}
+          className={`${styles.tabBtn} ${
+            type === "hot" ? styles.tabBtnActive : ""
+          }`}
           onClick={() => navigate("/?type=hot")}
         >
-          <img src={defaultTabImg} className={styles.tabBtnImg} alt="Hot Games" />
-          <span>Hot Games</span>
+  
+          <img
+            src={'../src/assets/img/hot.png'}
+            className={styles.tabBtnImg}
+            alt="Hot Games"
+          />
+          <span className="gameTabFontSize">Hot Games</span>
         </button>
         {gameTabs &&
           gameTabs
@@ -93,15 +100,25 @@ const GameTabsLg = () => {
             .map((item) => (
               <button
                 key={item.id}
-                className={`${styles.tabBtn} ${type == item.id ? styles.tabBtnActive : ""}`}
+                className={`${styles.tabBtn} ${
+                  type == item.id ? styles.tabBtnActive : ""
+                }`}
                 onClick={() => navigate(`?type=${item.id}`)}
               >
-                <img src={`https://luckymillion.pro${item.img}`} className={styles.tabBtnImg} alt={item.name} />
-                <span>{item.name}</span>
+                <img
+                  src={
+                    type == item.id
+                      ? activeImageMap[item.id]
+                      : baseImageMap[item.id]
+                  }
+                  className={styles.tabBtnImg}
+                  alt={item.name}
+                />
+                <span className="gameTabFontSize">{item.name}</span>
               </button>
             ))}
       </div>
-      <div className="row mt-4">
+      <div className="row mt-3">
         {/* gamelists */}
         {type && provider && <GameList loading={loading} games={games} />}
         {type == "hot" && (
@@ -130,34 +147,37 @@ const GameTabsLg = () => {
         )}  */}
         {type == "all" && !provider && (
           <>
-            <div >
+            <div>
               <h5 className="mb-3 fw-bold text-warning">
                 {content?.game_type?.burmese}
               </h5>
-              <div className="row  d-flex overflow-auto  ">
-                <div className=" col-lg-2 col-md-2 col-sm-2 col-5 mb-4 ">
+              <div className="d-flex overflow-auto  ">
+                <div className="ms-3 mb-4 me-2">
                   <Link
                     to={`https://goldendragon7.pro/?user_name=${user?.user_name}&balance=${user?.balance}`}
                     target="_blank"
                     className="flex-shrink-0"
                     // style={{ width: "130px" }}
                   >
-                    <div className="gold-card rounded-4 overflow-hidden">
+                    <div className="gold-card rounded-4 ">
                       <img
-                        className="img-fluid w-100 card-height"
+                        className="card-ratio"
                         style={{
                           // height: "200px",
                           borderTopLeftRadius: "1rem",
                           borderTopRightRadius: "1rem",
+                          border: "none",
                         }}
                         src={shan}
                         alt=""
                       />
                       <div
-                        className="px-3 py-2"
+                        className="px-3 py-2  mt-1"
                         style={{
                           backgroundColor: "rgba(0, 0, 0, 0.7)",
                           color: "#fff",
+                          overflow: "hidden !important",
+                          borderRadius: "200px",
                         }}
                       >
                         <h6
@@ -178,16 +198,16 @@ const GameTabsLg = () => {
                     </div>
                   </Link>
                 </div>
-                <div className="col-lg-2 col-md-2 col-sm-2 col-5 mb-4">
+                <div className="mb-4">
                   <Link
                     to={`https://ponewine20x.netlify.app/?user_name=${user?.user_name}&balance=${user?.balance}`}
                     target="_blank"
                     className="flex-shrink-0"
                     // style={{ width: "250px" }}
                   >
-                    <div className="gold-card rounded-4 overflow-hidden">
+                    <div className="gold-card rounded-4 ">
                       <img
-                        className="img-fluid w-100  card-height"
+                        className="card-ratio"
                         style={{
                           // height: "200px",
                           borderTopLeftRadius: "1rem",
@@ -197,10 +217,12 @@ const GameTabsLg = () => {
                         alt=""
                       />
                       <div
-                        className="px-3 py-2"
+                        className="px-3 py-2  mt-1"
                         style={{
                           backgroundColor: "rgba(0, 0, 0, 0.7)",
                           color: "#fff",
+                          overflow: "hidden !important",
+                          borderRadius: "200px",
                         }}
                       >
                         <h6

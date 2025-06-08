@@ -32,10 +32,10 @@ const BottomMenu = () => {
 
   return (
     (user && (<>
- <div className="bottomMenu ">
+ <div className="bottomMenu  ">
       <div className="d-flex justify-content-around bottomMenu text-warning provider_list overflow-x-auto">
         <div className="py-3 text-center">
-          <Link to="/">
+          <Link to="/?type=all">
              <i className="fa-solid fa-home me-2"></i>
           </Link>
         </div>
