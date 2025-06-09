@@ -15,12 +15,12 @@ const Layout = () => {
       <GeneralContextProvider>
         <GameContextProvider>
           <Toaster />
-            <div className="row " style={{ minHeight: '100vh', overflowY: 'scroll', height: 'max-content' }}>
+            {/* <div className="row " style={{ minHeight: '100vh', overflowY: 'scroll', height: 'max-content' }}> */}
               <div className="col-lg-10 col-md-10 col-sm-0 col-0 px-0 offset-lg-1 offset-md-1 offset-sm-0 offset-0">
                 <NavBar />
                 <Outlet />
               </div>
-            </div>
+            {/* </div> */}
           
           <BottomMenu />
         </GameContextProvider>

@@ -101,7 +101,7 @@ const GameTabsLg = () => {
             .map((item) => (
               <button
                 key={item.id}
-                className={`${styles.tabBtn} ${
+                className={`${styles.tabBtn}  ${
                   type == item.id ? styles.tabBtnActive : ""
                 }`}
                 onClick={() => navigate(`?type=${item.id}`)}
@@ -119,12 +119,12 @@ const GameTabsLg = () => {
               </button>
             ))}
       </div>
-      <div className="row mt-3">
+      <div className="row mt-1">
         {/* gamelists */}
         {type && provider && <GameList loading={loading} games={games} />}
         {type == "hot" && (
           <>
-            <h5 className="mb-3">{content?.game_type?.hot}</h5>
+            <h5 className="">{content?.game_type?.hot}</h5>
             <GameList loading={loading} games={hot_games} />
           </>
         )}
@@ -146,117 +146,111 @@ const GameTabsLg = () => {
             <GameList loading={loading} games={bingo_games} />
           </>
         )}  */}
-        {type == "all" && !provider && (
-          <>
-            <div>
-              <h5 className="mb-3 fw-bold text-warning">
-                {content?.game_type?.burmese}
-              </h5>
-              <div className="d-flex overflow-auto  ">
-                <div className="ms-3 mb-4 me-2">
-                  <Link
-                    to={`https://goldendragon7.pro/?user_name=${user?.user_name}&balance=${user?.balance}`}
-                    target="_blank"
-                    className="flex-shrink-0"
-                    // style={{ width: "130px" }}
-                  >
-                    <div className="gold-card rounded-4 ">
-                      <img
-                        className="card-ratio"
-                        style={{
-                          // height: "200px",
-                          borderTopLeftRadius: "1rem",
-                          borderTopRightRadius: "1rem",
-                          border: "none",
-                        }}
-                        src={shan}
-                        alt=""
-                      />
-                      <div
-                        className="px-3 py-2  mt-1"
-                        style={{
-                          backgroundColor: "rgba(0, 0, 0, 0.7)",
-                          color: "#fff",
-                          overflow: "hidden !important",
-                          borderRadius: "200px",
-                        }}
-                      >
-                        <h6
-                          className="mb-1"
-                          style={{
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            fontSize: "13px",
-                          }}
-                        >
-                          Shan
-                        </h6>
-                        <div className="d-flex align-items-center gap-2">
-                          <small className="fw-medium text-white"></small>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-                <div className="mb-4">
-                  <Link
-                    to={`https://ponewine20x.netlify.app/?user_name=${user?.user_name}&balance=${user?.balance}`}
-                    target="_blank"
-                    className="flex-shrink-0"
-                    // style={{ width: "250px" }}
-                  >
-                    <div className="gold-card rounded-4 ">
-                      <img
-                        className="card-ratio"
-                        style={{
-                          // height: "200px",
-                          borderTopLeftRadius: "1rem",
-                          borderTopRightRadius: "1rem",
-                        }}
-                        src={ponewine}
-                        alt=""
-                      />
-                      <div
-                        className="px-3 py-2  mt-1"
-                        style={{
-                          backgroundColor: "rgba(0, 0, 0, 0.7)",
-                          color: "#fff",
-                          overflow: "hidden !important",
-                          borderRadius: "200px",
-                        }}
-                      >
-                        <h6
-                          className="mb-1"
-                          style={{
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            fontSize: "13px",
-                          }}
-                        >
-                          PoneWine
-                        </h6>
-                        <div className="d-flex align-items-center gap-2">
-                          <small className="fw-medium text-white"></small>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
+      {type == "all" && !provider && (
+  <>
+    <div>
+      <h5 className=" fw-bold text-warning">
+        {content?.game_type?.burmese}
+      </h5>
+      <div className="row ">
+               <div className="col-3 col-sm-3 col-md-3 col-lg-2 px-1">
+
+          <Link
+            to={`https://goldendragon7.pro/?user_name=${user?.user_name}&balance=${user?.balance}`}
+            target="_blank"
+          >
+            <div className="gold-card rounded-4">
+              <img
+                className="w-100"
+                style={{
+                  aspectRatio: "1 / 1",
+                  objectFit: "cover",
+                  borderTopLeftRadius: "1rem",
+                  borderTopRightRadius: "1rem",
+                  border: "none",
+                }}
+                src={shan}
+                alt=""
+              />
+              <div
+                className="px-3 mt-1 text-center"
+                style={{
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "#fff",
+                  borderRadius: "200px",
+                }}
+              >
+                <h6
+                  className="mb-1"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    fontSize: "13px",
+                  }}
+                >
+                  Shan
+                </h6>
               </div>
             </div>
+          </Link>
+        </div>
+
+        <div className="col-3 col-sm-3 col-md-3 col-lg-2 px-1">
+          <Link
+            to={`https://ponewine20x.netlify.app/?user_name=${user?.user_name}&balance=${user?.balance}`}
+            target="_blank"
+          >
+            <div className="gold-card rounded-4">
+              <img
+                className="w-100"
+                style={{
+                  aspectRatio: "1 / 1",
+                  objectFit: "cover",
+                  borderTopLeftRadius: "1rem",
+                  borderTopRightRadius: "1rem",
+                }}
+                src={ponewine}
+                alt=""
+              />
+              <div
+                className="px-2  mt-1 text-center"
+                style={{
+                  backgroundColor: "rgba(0, 0, 0, 0.7)",
+                  color: "#fff",
+                  borderRadius: "200px",
+                }}
+              >
+                <h6
+                  className="mb-1"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    fontSize: "13px",
+                  }}
+                >
+                  PoneWine
+                </h6>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+
             <div className="">
               {gameTabs &&
                 gameTabs.map((tab, index) => (
                   <div className="w-100" key={index}>
-                    <h4 className="mb-3 fw-bold text-warning mt-3">
+                    <h4 className="mb-2 fw-bold text-warning mt-1 px-1">
                       {tab.name}
                     </h4>
                     <ProviderList typeCode={tab?.code} type={tab} />
                   </div>
                 ))}
             </div>
+            
           </>
         )}
 
