@@ -67,7 +67,10 @@ const GameTabsLg = () => {
     // 14: "/assets/my_local_images/premium.png",
   };
 
-  const hotGame =  '/images/hot.png';
+  const hotGame =  '/images/Final_All/Hot Game/Hot Game Fire.png';
+  const activeHotGame = '/images/Final_All/Hot Game/Hopt Game APNG/Hopt Game APNG.png'
+
+  const hotImg = type === "hot" ? activeHotGame : hotGame ;
   // Use the first game type's image as a fallback for All Games/Hot Games
   const defaultTabImg = gameTabs && gameTabs.length > 0 ? gameTabs[0].img : "";
 
@@ -89,7 +92,7 @@ const GameTabsLg = () => {
         >
   
           <img
-            src={hotGame}
+            src={hotImg }
             className={styles.tabBtnImg}
             alt="Hot Games"
           />
