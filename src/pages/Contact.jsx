@@ -32,7 +32,7 @@ const ContactPage = () => {
           ? fb
           : null, // Default to null if no condition matches
   }));
-  console.log(contacts);
+  // console.log(contacts);
 
 
   return (
