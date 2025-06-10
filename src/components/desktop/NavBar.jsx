@@ -146,7 +146,7 @@ function NavBar() {
               onClick={() => setShow(true)}
               className=" cursor-pointer   rounded text-dark btn btn-warning nav-sideBarBtn"
             >
-              <AlignJustifyIcon />
+              <AlignJustifyIcon className="custom-icon"/>
             </button>
             </>)}
           </div>

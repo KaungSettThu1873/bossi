@@ -22,12 +22,12 @@ import  p22 from '../../assets/img/pd22.png'
 import  p23 from '../../assets/img/pd23.png'
 
 const Footer = () => {
-  const providers=[p1,p2,p3,p4,p5,p6,p8,p9,p10,p11,p12,p13,p14,p15,p16,p18,p19,p20,p21,p22,p23]
+  const providers=[p1,p2,p3,p4,p5,p6,p8,p9,p10,p11]
   return (
-  <div style={{background:'#0D0D0D'}} className='py-5' >
+  <div style={{background:'#0D0D0D'}} className='py-3' >
      <small className='d-block text-center'>Best viewed by Google Chrome 72.0 or higher. Best viewed at a resolution of 1280x1024 or higher</small>
-     <small className="d-block text-center my-4">Bossi Copyright © 2019 . All rights reserved.</small>
-    <div className='mt-3 d-flex flex-wrap align-items-center justify-content-center gap-3 px-2 px-sm-4  mb-5 mb-sm-0'>
+     <small className="d-block text-center my-1">Bossi Copyright © 2019 . All rights reserved.</small>
+    <div className='mt-2 d-flex flex-wrap align-items-center justify-content-center gap-3 px-2 px-sm-4  mb-5 mb-sm-0'>
        {providers.map((img,index)=>{
           return <img src={img} className='providerImg ' key={index} />
       })}

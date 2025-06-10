@@ -17,40 +17,68 @@ const BottomMenu = () => {
   const { types, providers, updateType } = useContext(GameContext);
 
   // Helper function to determine if a link is active
-  const isActive = (path, typeId = null) => {
-    if (typeId !== null) {
-      const currentType = searchParams.get('type');
-      return currentType === typeId;
-    }
-    return location.pathname === path;
-  };
+const isActive = (path, typeId = null, tabParam = null) => {
+  const pathMatch = location.pathname === path;
+  const typeMatch = typeId ? searchParams.get('type') === typeId : true;
+  const tabMatch = tabParam ? searchParams.get('tab') === tabParam : true;
+
+  return pathMatch && typeMatch && tabMatch;
+};
 
   // Get icon color class based on active state
-  const getIconClass = (path, typeId = null) => {
-    return `fixedBottomIcon ${isActive(path, typeId) ? 'activeColor' : ''}`;
-  };
+const getIconClass = (path, typeId = null, tabParam = null) => {
+  return `fixedBottomIcon ${isActive(path, typeId, tabParam) ? 'activeColor' : ''}`;
+};
+  const baseImg = [
+    '/images/Final_All/Home/Home Icon.png',
+    '/public/images/Final_All/Message/Message.png',
+    '/public/images/Final_All/Money/Money.png'
+  ]
+
+  const activeImg = [
+    '/public/images/Final_All/Home/APNG Home 2/APNG Home 2.png',
+    '/public/images/Final_All/Message/Message APNG/Message APNG.png',
+    '/public/images/Final_All/Money/Money APNG/Money APNG.png'
+  ]
 
   return (
     (user && (<>
  <div className="bottomMenu  ">
       <div className="d-flex justify-content-around bottomMenu text-dark provider_list overflow-x-auto">
         <div className="py-3 text-center">
-          <Link to="/?type=all">
-             <i className="fa-solid fa-home me-2"></i>
-          </Link>
-        </div>
-                
-        <div className="py-3 text-center">
-          <Link to="/information?tab=profile">
-          <i className="fa-solid fa-user"></i>
-          </Link>
-        </div>
-        
-        <div className="py-3 text-center">
-          <Link to="/information?tab=transfer">
-           <i className="fa-solid fa-money-bill-transfer"></i>
-          </Link>
-        </div>
+      <Link to="/?type=all">
+        <img
+          src={isActive('/', 'all') ? activeImg[0] : baseImg[0]}
+          width={35}
+          height={35}
+          className={getIconClass('/', 'all')}
+        />
+      </Link>
+    </div>
+
+<div className="py-3 text-center">
+  <Link to="/Contact?tab=Contact">
+    <img
+      src={isActive('/Contact', null, 'Contact') ? activeImg[1] : baseImg[1]}
+      width={35}
+      height={35}
+      className={getIconClass('/Contact')}
+    />
+  </Link>
+</div>
+
+    <div className="py-3 text-center">
+      <Link to="/information?tab=transfer">
+        <img
+          src={isActive('/information', null) && searchParams.get('tab') === 'transfer'
+            ? activeImg[2]
+            : baseImg[2]}
+          width={35}
+          height={35}
+          className={getIconClass('/information')}
+        />
+      </Link>
+    </div>
         
        
       </div>

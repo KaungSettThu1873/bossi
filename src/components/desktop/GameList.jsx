@@ -96,7 +96,7 @@ export default function GameList({ loading, games }) {
 
     return (
         <>
-            <div className="row">
+            {/* <div className="row"> */}
                 {launchError && (
                     <div className="col-12 mb-3">
                         <div className="alert alert-danger" role="alert">
@@ -105,16 +105,37 @@ export default function GameList({ loading, games }) {
                     </div>
                 )}
                 {allGames.map((item, index) => (
-                    <div key={index} className="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div className={styles['game-card']}>
-                            <img
-                                src={item.image_url}
-                                className={styles['game-card-img']}
-                                alt={item.game_name}
-                            />
-                            <div className={styles['game-card-body']}>
-                                <div className={styles['game-card-title']} title={item.game_name}>
-                                    {item.game_name}
+                    <div key={index} className="col-3 col-sm-3 col-md-3 col-lg-2 cursor-pointer mb-2 px-1 ">
+                        <div className="gold-card rounded-4">
+                            <div      style={{
+                                width: "100%",
+                                aspectRatio: "1 / 1",
+                                overflow: "hidden",
+                                borderTopLeftRadius: "1rem",
+                                borderTopRightRadius: "1rem",
+                            }} >
+                                <img
+                                    src={item.image_url}
+                                    style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                }}
+                                 onClick={() => handleLaunchGame(item)}
+                                    alt={item.game_name}
+                                />
+                            </div>
+                                <div className="px-3  mt-1 text-center" style={{backgroundColor: "rgba(0, 0, 0, 0.7)",color: "#fff",borderRadius: "200px",}}>
+                                    <h6
+                                        className="mb-1"
+                                        style={{
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            fontSize: "13px",
+                                        }}
+                                        title={item.game_name}
+                                    >{item.game_name}</h6>     
                                 </div>
                                 <button
                                     className={styles['play-btn']}
@@ -129,9 +150,8 @@ export default function GameList({ loading, games }) {
                                 </button>
                             </div>
                         </div>
-                    </div>
                 ))}
-            </div>
+            {/* </div> */}
             {hasMore && (
                 <div className="text-center my-3">
                     <button

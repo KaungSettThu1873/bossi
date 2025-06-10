@@ -39,7 +39,7 @@ const ContactPage = () => {
     <>
       <div className="d-flex align-items-center bg-black">
         <Marquee />
-        <LanguageDropdown />
+        {/* <LanguageDropdown /> */}
       </div>
       <div className='py-5 px-3 px-sm-5 mb-5 '>
         <h4 className="fw-bold text-center mb-4">{content?.nav?.contact}</h4>
