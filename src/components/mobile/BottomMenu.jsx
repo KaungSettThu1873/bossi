@@ -31,14 +31,14 @@ const getIconClass = (path, typeId = null, tabParam = null) => {
 };
   const baseImg = [
     '/images/Final_All/Home/Home Icon.png',
-    '/public/images/Final_All/Message/Message.png',
-    '/public/images/Final_All/Money/Money.png'
+    '/images/Final_All/Message/Message.png',
+    '/images/Final_All/Money/Money.png'
   ]
 
   const activeImg = [
-    '/public/images/Final_All/Home/APNG Home 2/APNG Home 2.png',
-    '/public/images/Final_All/Message/Message APNG/Message APNG.png',
-    '/public/images/Final_All/Money/Money APNG/Money APNG.png'
+    '/images/Final_All/Home/APNG Home 2/APNG Home 2.png',
+    '/images/Final_All/Message/Message APNG/Message APNG.png',
+    '/images/Final_All/Money/Money APNG/Money APNG.png'
   ]
 
   return (
