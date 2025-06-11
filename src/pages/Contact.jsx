@@ -41,8 +41,8 @@ const ContactPage = () => {
         <Marquee />
         {/* <LanguageDropdown /> */}
       </div>
-      <div className='py-5 px-3 px-sm-5 mb-5 '>
-        <h4 className="fw-bold text-center mb-4">{content?.nav?.contact}</h4>
+      <div className='py-2 px-3 px-sm-5 mb-1 '>
+        <h4 className="fw-bold text-center mb-3">{content?.nav?.contact}</h4>
         <div className="mx-auto d-flex flex-wrap flex-sm-nowrap align-items-center justify-content-center gap-sm-4 rounded-4 border shadow-lg py-2 px-4 px-lg-5 my-3 text-white">
           <img src={logo} width='160px' />
           <div>
@@ -51,10 +51,10 @@ const ContactPage = () => {
           </div>
         </div>
         <div className="row mt-sm-5 justify-content-center">
-          {contacts && contacts.map((item, index) => {
+          {data && data.map((item, index) => {
             return <div className='col-6 mb-4 col-sm-3 text-center' key={index}>
               <Link to={item.value} target='_blank'>
-                <img src={item.image} className='rounded-2' width={50} />
+                <img src={"https://luckymillion.pro/api/.."+item.image} className='rounded-2' width={30} />
                 <small className='d-block mt-2'>{item.name}</small>
               </Link>
             </div>

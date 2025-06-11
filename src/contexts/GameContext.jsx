@@ -54,7 +54,7 @@ const GameContextProvider = ({ children }) => {
         type && selectedProvider ? `${BASE_URL}/game_lists/${type}/${selectedProvider.id}` : null
     );
     const { data: hot_games } = useFetch(`${BASE_URL}/hot_game_lists`);
-    
+   
     const updateType = (newType) => setType(newType);
     const updateProvider = (newProvider) => setProvider(newProvider);
 
@@ -74,7 +74,7 @@ const GameContextProvider = ({ children }) => {
         }),
         [types, providersData, game_lists, hot_games, loading, type, provider, providerName, typeName]
     );
-
+    // console.log('hot_games',hot_games);
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };
 
