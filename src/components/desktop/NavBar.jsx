@@ -23,6 +23,7 @@ import useFetch from "../../hooks/useFetch";
 import BASE_URL from "../../hooks/baseUrl";
 import fb from "../../assets/img/fb.png";
 import useLogout from "../../hooks/useLogout";
+import AdsVideo from "../../pages/AdsVideo";
 function NavBar() {
   const { content } = useContext(LanguageContext);
   const { user } = useContext(AuthContext);
@@ -42,8 +43,8 @@ function NavBar() {
       link: "/information?tab=transfer",
     },
     { img: promotion, name: content?.nav?.promotion, link: "/promotion" },
-    // { img: contact, name: content?.nav?.contact, link: "/contact" },
-    // { img: trophy, name: content?.nav?.ranking, link: "/ranking" },
+    { img: "/images/Final_All/Message/Message.png", name: content?.nav?.contact, link: "/contact" },
+    { img: "/images/Final_All/Video ADs/Video Ads.png", name: "AdsVideo", link: "/ads-video" },
   ];
   const [show, setShow] = useState(false);
 
@@ -157,20 +158,7 @@ function NavBar() {
         show={show}
         onHide={() => setShow(false)}
         placement="end"
-        style={{
-          backgroundColor: "#1e1e1e",
-          color: "white",
-          borderTopLeftRadius: "20px",
-          borderBottomLeftRadius: "20px",
-          boxShadow: "-4px 0 20px rgba(0, 0, 0, 0.7)",
-          width: "280px",
-          height: "500px",
-          maxHeight: "100vh",
-          overflowY: "auto",
-          position: "fixed",
-          top: "25%",
-          right: 0,
-        }}
+        className="offcanvasDesign"
       >
         <div style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
           <Offcanvas.Header

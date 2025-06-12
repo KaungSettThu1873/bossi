@@ -35,12 +35,14 @@ const BottomMenu = () => {
     "/images/Final_All/Home/Home Icon.png",
     "/images/Final_All/Message/Message.png",
     "/images/Final_All/Money/Money.png",
+    "/images/Final_All/Video ADs/Video Ads.png"
   ];
 
   const activeImg = [
     "/images/Final_All/Home/APNG Home 2/APNG Home 2.png",
     "/images/Final_All/Message/Message APNG/Message APNG.png",
     "/images/Final_All/Money/Money APNG/Money APNG.png",
+   "/images/Final_All/Video ADs/Video ADS PNG/Video ADS PNG.png"
   ];
 
   return (
@@ -60,19 +62,31 @@ const BottomMenu = () => {
             </div>
 
             <div className="text-center">
-              <Link to="/Contact?tab=Contact">
+              <Link to="/ads-video?tab=AdsVideo">
                 <img
                   src={
-                    isActive("/Contact", null, "Contact")
-                      ? activeImg[1]
-                      : baseImg[1]
+                    isActive("/ads-video", null, "AdsVideo")
+                      ? activeImg[3]
+                      : baseImg[3]
                   }
+                  width={40}
+                  height={40}
+                  className={getIconClass("/AdsVideo")}
+                />
+              </Link>
+            </div>
+
+               <div className="text-center">
+              <Link to="/Promotion?tab=Promotion">
+                <img
+                  src={"/images/Final_All/Promotion/APNG Promotion/APNG Promotion.png"}
                   width={40}
                   height={40}
                   className={getIconClass("/Contact")}
                 />
               </Link>
             </div>
+
 
             <div className="text-center">
               <Link to="/information?tab=transfer">
@@ -86,6 +100,22 @@ const BottomMenu = () => {
                   width={40}
                   height={40}
                   className={getIconClass("/information")}
+                />
+              </Link>
+
+            </div>
+
+                        <div className="text-center">
+              <Link to="/Contact?tab=Contact">
+                <img
+                  src={
+                    isActive("/Contact", null, "Contact")
+                      ? activeImg[1]
+                      : baseImg[1]
+                  }
+                  width={40}
+                  height={40}
+                  className={getIconClass("/Contact")}
                 />
               </Link>
             </div>

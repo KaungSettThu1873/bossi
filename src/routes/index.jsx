@@ -11,6 +11,7 @@ import AboutPage from "../pages/About";
 import DemoPlayPage from "../pages/DemoPlay";
 import Layout from "../components/Layout";
 import ReelsPage from "../pages/ReelsPage";
+import AdsVideo from "../pages/AdsVideo";
 
 
 export const router = createBrowserRouter([
@@ -53,7 +54,11 @@ export const router = createBrowserRouter([
         {
           path: '/about',
           element: <AboutPage />
-        }
+        },
+        {
+          path: '/ads-video',
+          element: <AdsVideo />
+        },
       ]
     },
     // {
