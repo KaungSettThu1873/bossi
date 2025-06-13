@@ -11,17 +11,19 @@ const Promotion = () => {
   return (<>
     <div className="d-flex align-items-center bg-black">
       <Marquee />
-      <LanguageDropdown />
+      {/* <LanguageDropdown /> */}
     </div>
-    <div className='py-4 px-3 px-sm-5 mx-lg-5 mb-5'>
-      <h4 className="fw-bold text-center mb-5">{content?.nav?.promotion}</h4>
+    <div className='py-4 px-3 px-sm-5 mx-lg-5 mb-2'>
+      <h4 className="fw-bold text-center mb-3">{content?.nav?.promotion}</h4>
       <div className="row">
         {promotions && promotions.map((item, index) => (
           <div className='col-md-12 mb-4' key={index}>
             <div className='py-3 rounded border '>
-              <h4 className='ms-4 mb-0'>{item.title}</h4>
-              <img src={ "https://luckymillion.pro/api/.."+item.img_url} className='my-3 my-sm-4 img-fluid' />
-              <p className='mx-4'>{item.description}</p>
+              <h4 className='ms-4 mb-0 text-center'>{item.title}</h4>
+              <div className='d-flex justify-content-center'>
+                <img src={ "https://luckymillion.pro/api/.."+item.img_url} className='my-2   img-fluid' />
+              </div>
+              <p className='mx-4 text-center'>{item.description}</p>
             </div>
           </div>
         ))}

@@ -23,6 +23,7 @@ const useLogin = () => {
                 //     navigate('/');
                 // }
                 navigate('/?type=all');
+                window.location.reload()
                 message.success('Logged In Successfully.');
                 return res.data.data.user;
             }

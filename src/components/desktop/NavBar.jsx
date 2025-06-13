@@ -35,16 +35,16 @@ function NavBar() {
     {
       img: profile,
       name: content?.profile?.my_profile,
-      link: "/information?tab=profile",
+      link: "/information?tab=profile"
     },
     {
       img: money,
       name: content?.wallet?.wallet,
-      link: "/information?tab=transfer",
+      link: "/information?tab=transfer"
     },
-    { img: promotion, name: content?.nav?.promotion, link: "/promotion" },
-    { img: "/images/Final_All/Message/Message.png", name: content?.nav?.contact, link: "/contact" },
-    { img: "/images/Final_All/Video ADs/Video Ads.png", name: "AdsVideo", link: "/ads-video" },
+    { img: promotion, name: content?.nav?.promotion, link: "/promotion"   },
+    { img: "/images/Final_All/icons8-message-100.png", name: content?.nav?.contact, link: "/contact" },
+    { img: "/images/Final_All/icons8-video-96.png", name: "AdsVideo", link: "/ads-video" },
   ];
   const [show, setShow] = useState(false);
 
