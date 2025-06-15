@@ -156,7 +156,7 @@ const GameTabsLg = () => {
         {content?.game_type?.burmese}
       </h5>
       <div className="row ">
-               <div className="col-3 col-sm-3 col-md-3 col-lg-2 px-1">
+               <div className="col-4 col-sm-4 col-md-4 col-lg-2 px-1">
 
           <Link
             to={`https://goldendragon7.pro/?user_name=${user?.user_name}&balance=${user?.balance}`}
@@ -181,6 +181,7 @@ const GameTabsLg = () => {
                   backgroundColor: "rgba(0, 0, 0, 0.7)",
                   color: "#fff",
                   borderRadius: "200px",
+                        marginTop: "3px"
                 }}
               >
                 <h6
@@ -199,7 +200,7 @@ const GameTabsLg = () => {
           </Link>
         </div>
 
-        <div className="col-3 col-sm-3 col-md-3 col-lg-2 px-1">
+        <div className="col-4 col-sm-4 col-md-4 col-lg-2 px-1">
           <Link
             to={`https://ponewine20x.netlify.app/?user_name=${user?.user_name}&balance=${user?.balance}`}
             target="_blank"
@@ -222,6 +223,7 @@ const GameTabsLg = () => {
                   backgroundColor: "rgba(0, 0, 0, 0.7)",
                   color: "#fff",
                   borderRadius: "200px",
+                        marginTop: "3px"
                 }}
               >
                 <h6

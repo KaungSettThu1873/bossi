@@ -53,7 +53,7 @@ export default function ProviderList({ typeCode, type }) {
         providers.map((item, index) => (
             <div
                 key={index}
-                className="col-3 col-sm-3 col-md-3 col-lg-2 cursor-pointer mb-2 px-1 "
+                className="col-4 col-sm-4 col-md-4 col-lg-2 cursor-pointer mb-2 px-1 "
             >
                 <div className="gold-card rounded-4">
                     <div
@@ -76,11 +76,12 @@ export default function ProviderList({ typeCode, type }) {
                         />
                     </div>
                     <div
-                        className="px-3  mt-1 text-center"
+                        className="px-3   text-center"
                         style={{
                             backgroundColor: "rgba(0, 0, 0, 0.7)",
                             color: "#fff",
                             borderRadius: "200px",
+                            marginTop: "3px"
                         }}
                     >
                         <h6

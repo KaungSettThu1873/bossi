@@ -613,7 +613,7 @@ width: 100px;
   right: -2px;
   bottom: -2px;
   z-index: -1;
-  background: #393e46;
+  /* background: #393e46; */
   border-radius: inherit;
 }
 
