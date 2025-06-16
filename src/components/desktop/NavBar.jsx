@@ -44,7 +44,7 @@ function NavBar() {
     },
     { img: promotion, name: content?.nav?.promotion, link: "/promotion"   },
     { img: "/images/Final_All/icons8-message-100.png", name: content?.nav?.contact, link: "/contact" },
-    { img: "/images/Final_All/icons8-video-96.png", name: "AdsVideo", link: "/ads-video" },
+    { img: "/images/Final_All/icons8-video-96.png", name: content?.nav?.ads_video, link: "/ads-video" },
   ];
   const [show, setShow] = useState(false);
 
@@ -83,10 +83,10 @@ function NavBar() {
                 {/* <button className="btn btn-outline-warning btn-sm me-4">
                   Login
                 </button> */}
-                     <button onClick={() => setShowLogin(true)} className="btn btn-outline-warning nav-btn ">Login</button>
+                     <button onClick={() => setShowLogin(true)} className="btn btn-outline-warning nav-btn ">{content?.auth?.login || "login"}</button>
       <Login show={showLogin} handleClose={() => setShowLogin(false)} />
              <button onClick={() => setShowRegister(true)} className="btn btn-warning nav-btn">
-        Join Now
+        {content?.auth?.register || "Join Now"}
       </button>
       <Register show={showRegister} onClose={() => setShowRegister(false)} />
               </>
@@ -101,7 +101,7 @@ function NavBar() {
               className="btn btn-warning nav-btn mobile-view"
             >
               <i className="fa-solid fa-home me-2"></i>
-              Home
+               {content?.nav?.home || "Home"}
             </button>
 
                     <button
@@ -112,7 +112,7 @@ function NavBar() {
               className="btn btn-warning nav-btn mobile-view"
             >
               <i className="fa-solid fa-circle-user me-2"></i>
-              Profile
+              {content?.profile?.my_profile || "Profile"}
             </button>
                 </> )}
 
@@ -268,7 +268,7 @@ function NavBar() {
                 }}
                 rel="noreferrer"
               >
-                Download App
+              {content?.nav?.download_app || "Download App"}  
               </a>
             </div>
 

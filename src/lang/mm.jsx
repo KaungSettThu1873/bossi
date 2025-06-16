@@ -50,7 +50,9 @@ const mm_data = {
         logs: "မှတ်တမ်းများ",
         promotion: "ပရိုမိုရှင်း",
         account: "အကောင့်",
-        game_log: "ဂိမ်းမှတ်တမ်း"
+        game_log: "ဂိမ်းမှတ်တမ်း",
+        ads_video : "ကြော်ငြာဗီဒီယို",
+        download_app : "ဒေါင်းလုဒ်ဆွဲရန်"
     },
     game_type: {
         all: "ဂိမ်းအားလုံး",
@@ -89,7 +91,10 @@ const mm_data = {
         status: "အခြေအနေ",
         date: "နေ့ရက်",
         kyat: "ကျပ်",
-        wallet: "ပိုက်ဆံအိတ်"
+        wallet: "ပိုက်ဆံအိတ်",
+        money_transfer: "ငွေသွင်းငွေထုတ်",
+        logs : "မှတ်တမ်းများ",
+
 
     },
     btn: {

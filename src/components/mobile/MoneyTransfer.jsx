@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext ,useState } from 'react'
 import WithDraw from './WithDraw';
 import '../../assets/css/moneyTransfer.css'
 import Deposit from './Deposit';
 import Transfer from './Transfer';
+import { LanguageContext } from "../../contexts/LanguageContext";
 
 const MoneyTransfer = () => {
+   const { content } = useContext(LanguageContext);
     const [selectedTab,setSelectedTab]=useState(1);
     const tabs=[
-        {id:1,name:'Deposit',value:''},
-        {id:2,name:'Withdraw',value:''},
+        {id:1,name: content?.wallet?.deposit || 'Deposit',value:''},
+        {id:2,name: content?.wallet?.withdraw ||'Withdraw',value:''},
         // {id:3,name:'လွှဲပြောင်းရန်',value:''},
      ]
   return (

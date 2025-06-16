@@ -46,7 +46,10 @@ const th_data = {
     logs: "บันทึก",
     promotion: "โปรโมชั่น",
     account: "บัญชี",
-    game_log: "บันทึกเกม"
+    game_log: "บันทึกเกม",
+    ads_video : "วิดีโอโฆษณา",
+    download_app : "ดาวน์โหลดแอป"
+
   },
   game_type: {
     all: "ทุกเกม",
@@ -83,7 +86,9 @@ const th_data = {
     status: "สถานะ",
     date: "วันที่",
     kyat: "จ๊าต",
-    wallet: "กระเป๋าเงิน"
+    wallet: "กระเป๋าเงิน",
+    money_transfer: "โอนเงิน",
+    logs : "บันทึก"
   },
   btn: {
     submit: "ส่ง",

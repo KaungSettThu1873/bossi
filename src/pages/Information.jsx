@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext,useEffect } from "react";
 import { FaHistory, FaUser } from "react-icons/fa";
 import { IoWalletSharp } from "react-icons/io5";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
@@ -10,30 +10,31 @@ import ChangePassword from "../components/mobile/ChangePassword";
 import Log from "../components/mobile/Log";
 import Marquee from "../components/mobile/Marquee";
 import LanguageDropdown from "../components/LanguageDropdown";
- 
+ import { LanguageContext } from "../contexts/LanguageContext";
 
 const InformationPage = () => {
+   const { content } = useContext(LanguageContext);
   const navigate = useNavigate();
    const [searchParams] = useSearchParams();
   const heading = [
     {
       id: 1,
       icon: <FaUser />,
-      title: "Profile User",
+      title: content?.profile?.my_profile || "Profile User",
       link: "/information?tab=profile",
       value: "profile",
     },
     {
       id: 2,
       icon: <IoWalletSharp />,
-      title: "Money Transfer",
+      title: content?.wallet?.money_transfer || "Money Transfer",
       link: "/information?tab=transfer",
       value: "transfer",
     },
     {
       id: 3,
       icon: <FaHistory />,
-      title: "Logs",
+      title: content?.wallet?.logs || "Logs",
       link: "/information?tab=logs&type=deposit",
       value: "logs",
     },

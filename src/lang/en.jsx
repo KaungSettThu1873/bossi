@@ -50,6 +50,7 @@ const en_data = {
         promotion: "Promotion",
         account: "Account",
         game_log: "Game Log",
+         ads_video : "Ads Video"
     },
     game_type: {
         all: "All Games",

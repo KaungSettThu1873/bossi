@@ -46,7 +46,9 @@ const zh_data = {
         logs: "记录",
         promotion: "优惠",
         account: "账户",
-        game_log: "游戏记录"
+        game_log: "游戏记录",
+        ads_video : "广告视频",
+        download_app : "下载应用"
     },
     game_type: {
         all: "所有游戏",
@@ -83,7 +85,9 @@ const zh_data = {
         status: "状态",
         date: "日期",
         kyat: "缅币",
-        wallet: "钱包"
+        wallet: "钱包",
+             money_transfer: "转账",
+  logs : "	日志"
     },
     btn: {
         submit: "提交",
