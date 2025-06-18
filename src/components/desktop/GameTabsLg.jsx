@@ -151,7 +151,7 @@ const GameTabsLg = () => {
         )}  */}
       {type == "all" && !provider && (
   <>
-    <div>
+    {/* <div>
       <h5 className=" fw-bold text-warning">
         {content?.game_type?.burmese}
       </h5>
@@ -242,7 +242,7 @@ const GameTabsLg = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </div> */}
 
             <div className="">
               {gameTabs &&
