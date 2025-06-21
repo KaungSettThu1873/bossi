@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import { LanguageContext } from '../../contexts/LanguageContext';
 import useFetch from '../../hooks/useFetch';
@@ -8,7 +8,7 @@ import BASE_URL from '../../hooks/baseUrl';
 export default function GameLogs() {
   const { content } = useContext(LanguageContext);
   const [selectedDate, setSelectedDate] = useState('today');
-  const {data:logs, loading} = useFetch(BASE_URL + "/wager-logs?type=" + selectedDate); 
+  const {data:logs, loading} = useFetch(`${BASE_URL}/player/game-logs?type=${selectedDate}`); 
 
   return (
     <>
@@ -47,19 +47,21 @@ export default function GameLogs() {
                   <small>{content?.log?.bet_amount}</small>
                 </th>
                 <th>
-                  <small>{content?.log?.win_amount}</small>
+                  <small>{content?.log?.win_lose || "Win/Loss"}</small>
                 </th>
               </tr>
             </thead>
             <tbody>
               {loading ? <tr><td colSpan={6}>Loading....</td></tr> : logs && logs.length === 0 ? <tr><td colSpan={6}>{content?.no_data}</td></tr> : logs && logs.map((log, index) =>(
                 <tr key={index}>
-                  <td>{log.from_date}</td>
-                  <td>{log.to_date}</td>
-                  <td>{log.product}</td>
-                  <td>{log.total_count}</td>
-                  <td>{log.total_bet_amount}</td>
-                  <td>{log.total_transaction_amount}</td>
+                  <td>{log.from}</td>
+                  <td>{log.to}</td>
+                  <td>{log.game_name}</td>
+                  <td>{log.spin_count}</td>
+                  <td>{parseFloat(log.turnover).toLocaleString()}</td>
+                  <td className={log.win_loss >= 0 ? 'text-success' : 'text-danger'}>
+                    {parseFloat(log.win_loss).toLocaleString()}
+                  </td>
                 </tr>
               ))}
             </tbody>
