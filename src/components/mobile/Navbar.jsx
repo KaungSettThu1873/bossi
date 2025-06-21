@@ -1,31 +1,17 @@
-import { useContext, useDebugValue, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import '../../assets/css/navbar.css'
-import { IoMdClose, IoMdRefreshCircle } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import home from '../../assets/img/home.svg';
 import logo from '../../assets/img/logo.png';
 import money from '../../assets/img/money.png';
-import register from '../../assets/img/register.svg';
 import promotion from '../../assets/img/promotion.svg';
-import trophy from '../../assets/img/trophy.svg';
 import profile from '../../assets/img/profile.svg';
-import contact from '../../assets/img/contact.svg';
-import deposit from '../../assets/img/deposit.svg';
-import coin from '../../assets/img/coin.png'
-import refresh from '../../assets/img/reload.svg'
-import about from '../../assets/img/about.svg';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaViber } from 'react-icons/fa';
-import { HiOutlineMenuAlt2 } from 'react-icons/hi';
-import { BsArrowRepeat } from 'react-icons/bs';
-import { FaRepeat } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 import { Button, Spinner } from 'react-bootstrap';
 import LanguageDropdown from '../LanguageDropdown';
-import social24 from '../../assets/img/social24.svg'
-import line from '../../assets/img/lineW.svg'
 import tele from '../../assets/img/telew.svg'
 import viber from '../../assets/img/viberw.svg'
-import { FiToggleLeft, FiToggleRight } from 'react-icons/fi';
 import { AlignJustifyIcon } from 'lucide-react';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -39,8 +25,8 @@ import useLogout from '../../hooks/useLogout';
 function Navbar() {
   const { content } = useContext(LanguageContext);
   const { user } = useContext(AuthContext);
-    const [showRegister, setShowRegister] = useState(false);
-    const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
   const navLinks = [
     { img: home, name: content?.nav?.home, link: '/' },
@@ -51,17 +37,16 @@ function Navbar() {
   const [show, setShow] = useState(false);
 
   const { data } = useFetch(BASE_URL + "/contact");
-  // console.log(data);
   
   const contacts = data?.map((contact) => ({
-    ...contact, // Copy existing object properties
-    image: contact.name == "Viber"
+    ...contact,
+    image: contact.name === "Viber"
       ? viber
-      : contact.name == "Telegram"
+      : contact.name === "Telegram"
         ? tele
-        : contact.name == "Facebook"
+        : contact.name === "Facebook"
           ? fb
-          : null, // Default to null if no condition matches
+          : null,
   }));
 
   const { logout, loading } = useLogout();
@@ -72,67 +57,56 @@ function Navbar() {
 
   return (
     <>
-   <nav className="nav-design-mobile p-2 text-white">
-  <div className="d-flex justify-content-between align-items-center">
-    <img src={logo} width={30} height={30} alt="Logo" />
+      <nav className="nav-design-mobile p-2 text-white">
+        <div className="d-flex justify-content-between align-items-center">
+          <img src={logo} width={30} height={30} alt="Bossi Logo" />
 
-    <div className="d-flex align-items-center gap-2 flex-wrap">
-      {!user && (
-        <>
-          <button
-            onClick={() => setShowLogin(true)}
-            className="btn btn-outline-warning btn-sm"
-          >
-            Login
-          </button>
-          <Login show={showLogin} handleClose={() => setShowLogin(false)} />
+          <div className="d-flex align-items-center gap-2 flex-wrap">
+            {!user && (
+              <>
+                <button
+                  onClick={() => setShowLogin(true)}
+                  className="btn btn-outline-warning btn-sm"
+                  aria-label="Login"
+                >
+                  Login
+                </button>
+                <Login show={showLogin} handleClose={() => setShowLogin(false)} />
 
-          <button
-            onClick={() => setShowRegister(true)}
-            className="btn btn-warning btn-sm"
-          >
-            Join Now
-          </button>
-          <Register show={showRegister} onClose={() => setShowRegister(false)} />
-        </>
-      )}
-
-      {user && (
-        <>
-          <button className="btn btn-warning btn-sm">
-            <i className="fa-solid fa-money-check-dollar me-1"></i>
-            {user?.balance}
-          </button>
-
-          <button
-            onClick={handleLogout}
-            className="btn btn-outline-warning btn-sm"
-          >
-            {loading && (
-              <Spinner
-                style={{ marginRight: "0.5rem" }}
-                animation="border"
-                size="sm"
-              />
+                <button
+                  onClick={() => setShowRegister(true)}
+                  className="btn btn-warning btn-sm"
+                  aria-label="Join Now"
+                >
+                  Join Now
+                </button>
+                <Register show={showRegister} onClose={() => setShowRegister(false)} />
+              </>
             )}
-            <i className="fa-solid fa-right-from-bracket me-1"></i>
-            {content?.profile?.logout || "Logout"}
-          </button>
-        </>
-      )}
 
-      <LanguageDropdown />
+            {user && (
+              <>
+                <button className="btn btn-warning btn-sm" disabled>
+                  <i className="fa-solid fa-money-check-dollar me-1"></i>
+                  {user?.balance ? parseFloat(user.balance).toLocaleString() : '0.00'}
+                </button>
+              </>
+            )}
 
-      <div
-        onClick={() => setShow(true)}
-        className="cursor-pointer py-1 px-2 rounded text-white bg-black bg-opacity-25"
-      >
-        <AlignJustifyIcon size={22} />
-      </div>
-    </div>
-  </div>
-</nav>
-     <Offcanvas
+            <LanguageDropdown />
+
+            <button
+              onClick={() => setShow(true)}
+              className="btn btn-link text-white p-1 rounded bg-black bg-opacity-25 border-0"
+              aria-label="Open menu"
+            >
+              <AlignJustifyIcon size={22} />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <Offcanvas
         show={show}
         onHide={() => setShow(false)}
         placement="end"
@@ -167,15 +141,16 @@ function Navbar() {
                 justifyContent: "space-between",
               }}
             >
-              {/* <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
+              <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
                 Menu
-              </span> */}
-              <IoMdClose
+              </span>
+              <button
                 onClick={() => setShow(false)}
-                style={{ cursor: "pointer" }}
-                size={26}
-                color="#fff"
-              />
+                className="btn btn-link text-white p-0 border-0"
+                aria-label="Close menu"
+              >
+                <IoMdClose size={26} />
+              </button>
             </Offcanvas.Title>
           </Offcanvas.Header>
 
@@ -202,10 +177,18 @@ function Navbar() {
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.backgroundColor = "transparent")
                 }
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    navigate(item.link);
+                    setShow(false);
+                  }
+                }}
               >
                 <img
                   src={item.img}
-                  alt=""
+                  alt={`${item.name} icon`}
                   width={24}
                   style={{
                     marginRight: "12px",
@@ -218,32 +201,33 @@ function Navbar() {
               </div>
             ))}
 
-        
-       
-
-            <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
-              <button
-                onClick={handleLogout}
-                style={{
-                  backgroundColor: "#e74c3c",
-                  color: "#fff",
-                  border: "none",
-                  width: "100%",
-                  borderRadius: "30px",
-                  padding: "5px",
-                  fontWeight: "bold",
-                }}
-              >
-                {loading && (
-                  <Spinner
-                    style={{ marginRight: "0.5rem" }}
-                    animation="border"
-                    size="sm"
-                  />
-                )}
-                {content?.profile?.logout}
-              </button>
-            </div>
+            {user && (
+              <div style={{ textAlign: "center", marginTop: "1.5rem" }}>
+                <button
+                  onClick={handleLogout}
+                  disabled={loading}
+                  style={{
+                    backgroundColor: "#e74c3c",
+                    color: "#fff",
+                    border: "none",
+                    width: "100%",
+                    borderRadius: "30px",
+                    padding: "8px",
+                    fontWeight: "bold",
+                    opacity: loading ? 0.7 : 1,
+                  }}
+                >
+                  {loading && (
+                    <Spinner
+                      style={{ marginRight: "0.5rem" }}
+                      animation="border"
+                      size="sm"
+                    />
+                  )}
+                  {content?.profile?.logout || "Logout"}
+                </button>
+              </div>
+            )}
 
             <div style={{ margin: "1.5rem 0" }}>
               <a
@@ -253,7 +237,7 @@ function Navbar() {
                   display: "inline-block",
                   textAlign: "center",
                   border: "1px solid #fff",
-                  padding: "5px",
+                  padding: "8px",
                   borderRadius: "999px",
                   color: "white",
                   textDecoration: "none",
@@ -261,26 +245,33 @@ function Navbar() {
                   fontWeight: 600,
                 }}
                 rel="noreferrer"
+                aria-label="Download App"
               >
                 Download App
               </a>
             </div>
 
-            <div
-              style={{
-                marginTop: "2rem",
-                marginBottom: "2rem",
-                display: "flex",
-                justifyContent: "center",
-                gap: "1rem",
-              }}
-            >
-              {/* {contacts &&
-                contacts.map((contact, index) => (
-                  <Link to={contact.link} key={index}>
+            {contacts && contacts.length > 0 && (
+              <div
+                style={{
+                  marginTop: "2rem",
+                  marginBottom: "2rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "1rem",
+                }}
+              >
+                {contacts.map((contact, index) => (
+                  <a
+                    href={contact.link}
+                    key={index}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Contact us on ${contact.name}`}
+                  >
                     <img
                       src={contact.image}
-                      alt=""
+                      alt={contact.name}
                       width={45}
                       height={45}
                       style={{
@@ -288,9 +279,10 @@ function Navbar() {
                         boxShadow: "0 0 6px rgba(0,0,0,0.4)",
                       }}
                     />
-                  </Link>
-                ))} */}
-            </div>
+                  </a>
+                ))}
+              </div>
+            )}
           </Offcanvas.Body>
         </div>
       </Offcanvas>

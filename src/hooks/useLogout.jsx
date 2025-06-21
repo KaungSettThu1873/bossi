@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BASE_URL from './baseUrl';
 import { message } from 'antd';
+import { AuthContext } from '../contexts/AuthContext';
 
 const useLogout = () => {
+    const { logout: contextLogout } = useContext(AuthContext);
     const [error, setError] = useState();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -21,8 +23,7 @@ const useLogout = () => {
             });
             if (response.ok) {
                 setLoading(false);
-                navigate('/?type=all');
-                localStorage.removeItem('token');
+                contextLogout();
                 message.success('Logout successfully.');
             } else {
                 console.error("Logout failed:", response.statusText);

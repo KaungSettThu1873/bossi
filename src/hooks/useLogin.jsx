@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { message } from 'antd';
+import { AuthContext } from '../contexts/AuthContext';
 
 const useLogin = () => {
+    const { updateProfile } = useContext(AuthContext);
     const [error, setError] = useState();
     const [errMsg, setErrMsg] = useState();
     const [loading, setLoading] = useState(false);
@@ -14,24 +16,25 @@ const useLogin = () => {
         try {
             const res = await axios.post(url, inputData);
             if (res.status === 200) {
-                setError();
+                setError(null);
+                setErrMsg(null);
                 setLoading(false);
-                localStorage.setItem('token', res.data.data.token);
-                // if(res.data.data.user.role === 'system' || res.data.data.user.role === 'admin') {
-                //     navigate('/admin')
-                // } else {
-                //     navigate('/');
-                // }
+                const { token, user } = res.data.data;
+                localStorage.setItem('token', token);
+                updateProfile(user);
+                
                 navigate('/?type=all');
-                window.location.reload()
                 message.success('Logged In Successfully.');
-                return res.data.data.user;
+                return user;
             }
         } catch (e) {
             setLoading(false);
-            setError(e.response.data.errors);
-            setErrMsg(e.response.data.message);
-            return;
+            if (e.response && e.response.data) {
+                setError(e.response.data.errors);
+                setErrMsg(e.response.data.message);
+            } else {
+                setErrMsg("An unexpected error occurred.");
+            }
         }
         return null;
     };
