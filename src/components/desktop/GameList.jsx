@@ -65,6 +65,51 @@ export default function GameList({ loading, games }) {
   };
 
   // Launch game handler
+  // const handleLaunchGame = async (game) => {
+  //   setLaunchingGameId(game.id);
+  //   setLaunchError("");
+  
+  //   try {
+  //     const res = await fetch(`${BASE_URL}/seamless/launch-game`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         Authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //       body: JSON.stringify({
+  //         game_code: game.game_code,
+  //         product_code: game.product_code,
+  //         game_type: game.game_type,
+  //       }),
+  //     });
+  
+  //     const result = await res.json();
+  
+  //     if (result.code === 200) {
+  //       if (result.content) {
+  //         // Only open popup if content is present
+  //         const gameWindow = window.open();
+  //         if (gameWindow) {
+  //           gameWindow.document.write(result.content);
+  //           gameWindow.document.close();
+  //         }
+  //       } else if (result.url) {
+  //         window.open(result.url, "_blank", "noopener");
+  //       } else {
+  //         setLaunchError(result.message || "No launch URL or content.");
+  //       }
+  //     } else {
+  //       setLaunchError(result.message || "Failed to launch game.");
+  //     }
+  //   } catch (e) {
+  //     setLaunchError("Network error. Please try again.");
+  //   } finally {
+  //     setLaunchingGameId(null);
+  //   }
+  // };
+
+  // telegram broswer support 
   const handleLaunchGame = async (game) => {
     setLaunchingGameId(game.id);
     setLaunchError("");
@@ -87,17 +132,20 @@ export default function GameList({ loading, games }) {
       const result = await res.json();
   
       if (result.code === 200) {
-        if (result.content) {
-          // Only open popup if content is present
+        if (result.url) {
+          // ✅ Redirect works in Telegram browser
+          window.location.href = result.url;
+        } else if (result.content) {
+          // Fallback only for desktop browsers (Telegram will break here)
           const gameWindow = window.open();
           if (gameWindow) {
             gameWindow.document.write(result.content);
             gameWindow.document.close();
+          } else {
+            setLaunchError("Popup blocked. Please allow popups.");
           }
-        } else if (result.url) {
-          window.open(result.url, "_blank", "noopener");
         } else {
-          setLaunchError(result.message || "No launch URL or content.");
+          setLaunchError(result.message || "Launch failed: No URL or content.");
         }
       } else {
         setLaunchError(result.message || "Failed to launch game.");
@@ -108,6 +156,7 @@ export default function GameList({ loading, games }) {
       setLaunchingGameId(null);
     }
   };
+  
   
 
   const filteredGames = allGames.filter((game) =>
